@@ -1,1 +1,17 @@
 //This file contains the structure of the program
+
+Java Communication ------ Main JAVA program
+  |
+  |
+  |
+  |
+  ----|-----------------------|
+      |                       |
+    Library             Skype Client
+    |
+    |
+    |
+    |
+  Skype
+  
+ActivityBoard Communication ------ Main C program
