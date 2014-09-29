@@ -1,1 +1,15 @@
-//This file contains hardware structure for robot
+//This file contains hardware structure for robot & computers
+
+Arlo Robot
+  -ActivityBoard
+  -Wheels/Motors
+  -Encoders
+  -HB-25 Motor Encoders ( turn servo/Parallax pulses into motor pulses )
+
+Computer ( On top of Arlo robot )
+  -Camera ( Connected to computer )
+  -Internet Connection ( Required )
+  
+Computer ( Remote Connection )
+  -Camera ( Connected to computer )
+  -Internet Connection ( Required )
