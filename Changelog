@@ -1,7 +1,7 @@
 Version 0.2 ( Current Version ):
   -Controller
   -2 port Java program ( Controller coming in, ActivityBoard going out )
-  -ActivityBoard program
+  -ActivityBot program
 
 Version 0.1:
   -Basic communication between an ActivityBoard and Java
