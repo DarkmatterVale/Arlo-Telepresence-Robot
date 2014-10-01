@@ -1,6 +1,7 @@
 /*
 
-Base code courtesy of ChrisL8, edited and added to by DarkmatterVale
+Base code courtesy of ChrisL8
+Edited and added to by DarkmatterVale
 
 */
 
