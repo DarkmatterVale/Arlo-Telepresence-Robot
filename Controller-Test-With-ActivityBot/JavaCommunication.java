@@ -14,7 +14,7 @@ To Do:
 
 */
 
-
+//CHANGE PACKAGE TO CURRENT PACKAGE ( ActivityBotTest )
 package jssc.first.run;
 
 import java.util.Scanner;
@@ -25,7 +25,7 @@ import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
 
-public class JSSCFirstRun {
+public class ActivityBotTestJAVA {
 
 static SerialPort serialPort;
 
