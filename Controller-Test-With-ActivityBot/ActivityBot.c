@@ -28,19 +28,19 @@ int main()                                    // Main function
   {
     c = fdserial_rxChar( xbee ); //get all values sent to the ActivityBot
  
-    if ( c == 'f' )
+    if ( c == 'f' ) //if the robot was told to go forward, go forward
     {
       drive_speed( 64, 64 );
-    } else if ( c == 'b' )
+    } else if ( c == 'b' ) //if the robot was told to go backward, go backward
     {
       drive_speed( -64, -64 );
-    } else if ( c == 'l' )
+    } else if ( c == 'l' ) //if the robot was told to go left, go left
     {
       drive_speed( 0, 64 );
-    } else if ( c == 'r' )
+    } else if ( c == 'r' ) //if the robot was told to go right, go right
     {
       drive_speed( 64, 0 );
-    } else if ( c == 's' )
+    } else if ( c == 's' ) //if the robot is told to stop, stop
     {
       drive_speed( 0, 0 );
     }
