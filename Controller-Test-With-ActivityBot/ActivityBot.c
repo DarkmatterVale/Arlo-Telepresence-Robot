@@ -16,17 +16,18 @@
 #include "fdserial.h"
 #include "abdrive.h"
 
-fdserial *xbee;
+fdserial *term;
 
 int main()                                    // Main function
 {
-  xbee = fdserial_open( 9, 8, 0, 9600 );
+  simpleterm_close();
+  term = fdserial_open( 31, 30, 0, 115200 );
 
   char c;
 
   while ( 1 )
   {
-    c = fdserial_rxChar( xbee );
+    c = fdserial_rxChar( term );
  
     if ( c == 'f' )
     {
