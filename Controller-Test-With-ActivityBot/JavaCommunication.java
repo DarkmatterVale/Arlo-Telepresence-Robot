@@ -63,10 +63,10 @@ public static void main(String[] args) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
     while(true) {
-    String s = input.nextLine();
+    String s = "f"; //V1: input.nextLine();
     //System.out.println(s + "\n");
     try {
-        serialPort.writeString(s + "\n");
+        serialPort.writeString(s ); //+ "\n");
     } catch (SerialPortException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
