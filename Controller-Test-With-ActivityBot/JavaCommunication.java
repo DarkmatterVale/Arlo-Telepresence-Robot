@@ -15,8 +15,12 @@ To Do:
 */
 
 //CHANGE PACKAGE TO CURRENT PACKAGE ( ActivityBotTest )
-package jssc.first.run;
+package arlo.telepresence.device.activtybot;
 
+/**
+ *
+ * @author Vale Tolpegin
+ */
 import java.util.Scanner;
 
 import jssc.SerialPort;
@@ -24,12 +28,31 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
+/*
 
-public class ActivityBotTestJAVA {
+NOTE: THE PACKAGE CLASS NAME IS INDEPENDENT TO WHAT FILE YOU ARE IN. PLEASE CHANGE THOSE ACCORDING TO WHAT PROGRAM YOU ARE USING
 
-static SerialPort serialPort;
+*/
+
+public class ArloTelepresenceDeviceActivtyBot {
+
+static SerialPort outputPort;
+static SerialPort inputPort;
+static String outputString = "s";
 
 public static void main(String[] args) {
+    System.out.println( "Opening serial port on COM4 " );
+    inputPort = new SerialPort("COM4");
+    try
+    {
+        inputPort.openPort();
+        System.out.println( "Setting parameters to 115200, 8, 1, 0" );
+        inputPort.setParams( 115200, 8, 1, 0 );
+    } 
+    catch ( Exception ex )
+    {
+        ex.printStackTrace();
+    }
     /*if (args.length != 1) {
         System.out.println("You must include the COM port!");
         System.out.println("Like this:");
@@ -41,32 +64,33 @@ public static void main(String[] args) {
     }*/
     Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
-    serialPort = new SerialPort("COM4");
+    outputPort = new SerialPort("COM3");
     try {
         //System.out.print("Opening " + args[0] + " at");
-        System.out.print("Opening COM4 at");
-        serialPort.openPort();
+        System.out.print("Opening COM3 at");
+        outputPort.openPort();
         System.out.print(" 115200, 8, 1, 0 and ");
-        serialPort.setParams(115200, 8, 1, 0);
+        outputPort.setParams(115200, 8, 1, 0);
         //Preparing a mask. In a mask, we need to specify the types of events that we want to track.
         //Well, for example, we need to know what came some data, thus in the mask must have the
         //following value: MASK_RXCHAR. If we, for example, still need to know about changes in states 
         //of lines CTS and DSR, the mask has to look like this: SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR
         int mask = SerialPort.MASK_RXCHAR;
         //Set the prepared mask
-        serialPort.setEventsMask(mask);
+        outputPort.setEventsMask(mask);
+        inputPort.setEventsMask( mask );
         //Add an interface through which we will receive information about events
         System.out.println("waiting for data . . .");
-        serialPort.addEventListener(new SerialPortReader());
+        inputPort.addEventListener(new SerialPortReader());
     }
     catch (SerialPortException ex) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
     while(true) {
-    String s = "f"; //V1: input.nextLine();
+    // outputString = "f"; //V1: input.nextLine();
     //System.out.println(s + "\n");
     try {
-        serialPort.writeString(s ); //+ "\n");
+        outputPort.writeString( outputString );
     } catch (SerialPortException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -92,11 +116,12 @@ static class SerialPortReader implements SerialPortEventListener {
              */
             //if(event.getEventValue() == 10){
                 try {
-                    String data = serialPort.readString();
+                    String data = inputPort.readString();
                     //System.out.println("Data: " + data); // For debugging
                     if ( data != null )
                     {
                         System.out.print(data);
+                        outputString = data;
                     }
                 }
                 catch (SerialPortException ex) {
