@@ -1,0 +1,3 @@
+VersionInfo ( v0. 2 ):
+  -Move an ActivityBot from a controller ( ActivityBoard ) using Java program
+  -Dual port Java program
