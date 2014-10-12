@@ -1,7 +1,12 @@
-Version 0.2 ( Current Version ):
+Version 0.3 ( Current Version ):
+  -Java program that can send email ( from Gmail )
+  -Java program that can read email ( from Gmail )
+
+Version 0.2:
   -Controller
   -2 port Java program ( Controller coming in, ActivityBoard going out )
-  -ActivityBot program
+  -ActivityBot program ( Robot )
+  -ActivityBoard program ( Controller using Joystick )
 
 Version 0.1:
   -Basic communication between an ActivityBoard and Java
