@@ -5,7 +5,7 @@ How to create your very own telepresence device with just an Arlo robot, 2 compu
 
 =======================
 
-Current Version: v0.2
+Current Version: v0.3
 
 =======================
 
