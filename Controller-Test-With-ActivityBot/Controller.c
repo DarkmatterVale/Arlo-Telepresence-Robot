@@ -4,11 +4,12 @@
 #include "fdserial.h"
 #include "adcDCpropab.h"
 
-fdserial *xbee;
+fdserial *term;
 
 int main()
 {
-  xbee = fdserial_open( 9, 8, 0, 9600 );
+  simpleterm_close();
+  term = fdserial_open( 31, 30, 0, 115200 );
   adc_init( 21, 20, 19, 18 );
 
   float lrV, udV;
@@ -20,19 +21,19 @@ int main()
 
     if ( udV < 1.00 )
     {
-      dprint( xbee, "b" );
+      dprint( term, "b" );
     } else if ( udV > 4.00 )
     {
-      dprint( xbee, "f" );
+      dprint( term, "f" );
     } else if ( udV < 4.00 && udV > 1.00 && lrV < 4.00 && lrV > 1.00 )
     {
-      dprint( xbee, "s" );
+      dprint( term, "s" );
     } else if ( lrV < 1.00 )
     {
-      dprint( xbee, "l" );
+      dprint( term, "l" );
     } else if ( lrV > 4.00 )
     {
-      dprint( xbee, "r" );
+      dprint( term, "r" );
     }
 
     pause( 50 );
