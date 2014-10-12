@@ -1,3 +1,3 @@
-VersionInfo ( v0.3 ):
-  -Can send emails to a gmail account
-  -Can receive emails from a gmail account
+Version 0.3:
+  -Java program that can send email ( from Gmail )
+  -Java program that can read email ( from Gmail )
