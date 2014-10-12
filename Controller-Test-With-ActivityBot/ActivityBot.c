@@ -16,17 +16,17 @@
 #include "fdserial.h"
 #include "abdrive.h"
 
-fdserial *xbee;
+fdserial *xbee; //Create full-duplex XBee serial communication variable
 
 int main()                                    // Main function
 {
-  xbee = fdserial_open( 9, 8, 0, 9600 );
+  xbee = fdserial_open( 9, 8, 0, 9600 ); //Initialize communication
 
-  char c;
+  char c; //Create char
 
   while ( 1 )
   {
-    c = fdserial_rxChar( xbee );
+    c = fdserial_rxChar( xbee ); //get all values sent to the ActivityBot
  
     if ( c == 'f' )
     {
