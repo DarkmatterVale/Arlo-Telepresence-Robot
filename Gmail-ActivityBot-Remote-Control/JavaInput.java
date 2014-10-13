@@ -5,6 +5,10 @@ Edited and added to by ValeT ( DarkmatterVale )
 
 To Do:
   -Add comments ( Current comments are from ChrisL8, add to them )
+  -Remove unneeded code
+  -Remove output port
+  -Edit out outputString
+  -Add Gamil sending component
 
 */
 
