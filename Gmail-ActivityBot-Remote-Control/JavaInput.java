@@ -12,9 +12,6 @@ To Do:
 
 */
 
-//CHANGE PACKAGE TO CURRENT PACKAGE ( ActivityBotTest )
-package arlo.telepresence.device.activtybot;
-
 /**
  *
  * @author DarkmatterVale
