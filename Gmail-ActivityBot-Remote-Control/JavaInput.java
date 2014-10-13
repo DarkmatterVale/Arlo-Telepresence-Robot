@@ -22,23 +22,9 @@ import jssc.SerialPortException;
 public class ArloTelepresenceDeviceActivtyBot {
 
 static SerialPort outputPort;
-static SerialPort inputPort;
 static String outputString = "s";
 
 public static void main(String[] args) {
-    System.out.println( "Opening serial port on COM4 " );
-    inputPort = new SerialPort("COM4");
-    try
-    {
-        inputPort.openPort();
-        System.out.println( "Setting parameters to 115200, 8, 1, 0" );
-        inputPort.setParams( 115200, 8, 1, 0 );
-    } 
-    catch ( Exception ex )
-    {
-        ex.printStackTrace();
-    }
-    
     Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
     outputPort = new SerialPort("COM3");
@@ -55,7 +41,6 @@ public static void main(String[] args) {
         int mask = SerialPort.MASK_RXCHAR;
         //Set the prepared mask
         outputPort.setEventsMask(mask);
-        inputPort.setEventsMask( mask );
         //Add an interface through which we will receive information about events
         System.out.println("waiting for data . . .");
         inputPort.addEventListener(new SerialPortReader());
@@ -93,7 +78,7 @@ static class SerialPortReader implements SerialPortEventListener {
              */
             //if(event.getEventValue() == 10){
                 try {
-                    String data = inputPort.readString();
+                    String data = outputPort.readString();
                     //System.out.println("Data: " + data); // For debugging
                     if ( data != null )
                     {
