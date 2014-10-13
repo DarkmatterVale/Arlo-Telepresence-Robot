@@ -38,15 +38,7 @@ public static void main(String[] args) {
     {
         ex.printStackTrace();
     }
-    /*if (args.length != 1) {
-        System.out.println("You must include the COM port!");
-        System.out.println("Like this:");
-        System.out.println("Test1 COM4");
-        System.out.println("Test1 /dev/ttyUSB0");
-        System.out.println("Test1 /dev/ttyAMA0");
-        System.out.println("etc.");
-        System.exit(1);
-    }*/
+    
     Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
     outputPort = new SerialPort("COM3");
