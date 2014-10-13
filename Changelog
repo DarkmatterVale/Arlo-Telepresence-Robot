@@ -1,4 +1,14 @@
-Version 0.3 ( Current Version ):
+Version 0.4 ( Current Version ):
+  -Robot ( ActivityBot )
+  -Controller ( ActivityBoard )
+  -JavaInput program
+    -Get input from ActivityBoard
+    -Send email with move instruction
+  -JavaOutput program
+    -Receive email with move instruction
+    -Send instruction to ActivityBot
+
+Version 0.3:
   -Java program that can send email ( from Gmail )
   -Java program that can read email ( from Gmail )
 
