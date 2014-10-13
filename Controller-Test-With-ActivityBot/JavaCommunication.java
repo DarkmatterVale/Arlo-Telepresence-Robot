@@ -8,8 +8,6 @@ Edited and added to by ValeT ( DarkmatterVale )
 /*
 
 To Do:
-  -Add second COM port communication
-  -Multithreading???? ( 1 thread for each port )
   -Add comments ( Current comments are from ChrisL8, add to them )
 
 */
