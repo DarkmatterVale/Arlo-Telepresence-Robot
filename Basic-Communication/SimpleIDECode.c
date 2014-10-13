@@ -1,6 +1,6 @@
 /*
 
-Base code courtesy of ChrisL8, edited by DarkmatterVale
+Base code courtesy of ChrisL8, edited by DarkmatterVale ( ValeT )
 
 */
 
