@@ -49,14 +49,15 @@ public static void main(String[] args) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
     while(true) {
-    // outputString = "f"; //V1: input.nextLine();
-    //System.out.println(s + "\n");
-    try {
-        outputPort.writeString( outputString );
-    } catch (SerialPortException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
+      //TO DO: add Gmail message grab
+      
+      // outputString = "f";
+      //System.out.println(s + "\n");
+      try {
+          outputPort.writeString( outputString );
+      } catch (SerialPortException e) {
+          e.printStackTrace();
+      }
     }
 }
 
