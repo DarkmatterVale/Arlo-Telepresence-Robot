@@ -1,5 +1,11 @@
 //ActivityBot code here for moving the ActivityBot based on the value returned from the controller
 
+/*
+
+Author: Vale Tolpegin ( ValeT )
+
+*/
+
 //PSEUDOCODE:
 //while true
   //Read in computer signals
