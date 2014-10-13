@@ -7,7 +7,11 @@ import javax.activation.*;
 
 Author: DarkmatterVale
 
+To Do:
+   -Add comments
+
 */
+
 public class GmailTestProject
 {
    public static void main(String [] args)
