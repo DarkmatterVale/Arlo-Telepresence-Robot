@@ -1,5 +1,11 @@
 //Code for the ActivityBot robot
 
+/*
+
+Author: DarkmatterVale
+
+*/
+
 #include "simpletools.h"                      // Include simple tools
 #include "fdserial.h"
 #include "abdrive.h"
