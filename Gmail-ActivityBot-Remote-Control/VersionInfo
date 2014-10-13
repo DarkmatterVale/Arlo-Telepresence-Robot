@@ -1,1 +1,9 @@
-VersionInfo:
+VersionInfo ( v0.4 ):
+  -Robot ( ActivityBot )
+  -Controller ( ActivityBoard )
+  -JavaInput program
+    -Get input from ActivityBoard
+    -Send email with move instruction
+  -JavaOutput program
+    -Receive email with move instruction
+    -Send instruction to ActivityBot
