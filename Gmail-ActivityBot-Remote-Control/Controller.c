@@ -1,5 +1,11 @@
 //Code for ActivityBoard controller
 
+/*
+
+Author: Vale Tolpegin ( ValeT )
+
+*/
+
 #include "simpletools.h"                      // Include simple tools
 #include "fdserial.h"
 #include "adcDCpropab.h"
