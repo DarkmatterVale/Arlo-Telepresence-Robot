@@ -62,6 +62,7 @@ public class ArloTelepresenceDeviceActivtyBot {
 
 static SerialPort inputPort;
 static String outputString = "s";
+static String data = "";
 
 public static void main(String[] args) {
     //Scanner input = new Scanner(System.in);
@@ -87,23 +88,22 @@ public static void main(String[] args) {
     catch (SerialPortException ex) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
+    
     while(true) {
       //To Do: add gmail component
       
       //outputString = "f";
       //System.out.println(outputString + "\n");
-      try {
-          outputPort.writeString( outputString );
-      } catch (SerialPortException e) {
-          e.printStackTrace();
-      }
+      //try {
+        //  outputPort.writeString( outputString );
+      //} catch (SerialPortException e) {
+        //  e.printStackTrace();
+      //}
     }
 }
 
 
 static class SerialPortReader implements SerialPortEventListener {
-
-
     public void serialEvent(SerialPortEvent event) {
         //Object type SerialPortEvent carries information about which event occurred and a value.
         //For example, if the data came a method event.getEventValue() returns us the number of bytes in the input buffer.
@@ -118,7 +118,7 @@ static class SerialPortReader implements SerialPortEventListener {
              */
             //if(event.getEventValue() == 10){
                 try {
-                    String data = inputPort.readString();
+                    data = inputPort.readString();
                     //System.out.println("Data: " + data); // For debugging
                     if ( data != null )
                     {
