@@ -8,9 +8,6 @@ To Do:
 
 */
 
-//CHANGE PACKAGE TO CURRENT PACKAGE ( ActivityBotTest )
-package arlo.telepresence.device.activtybot;
-
 /**
  *
  * @author DarkmatterVale
@@ -21,12 +18,6 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
-
-/*
-
-NOTE: THE PACKAGE CLASS NAME IS INDEPENDENT TO WHAT FILE YOU ARE IN. PLEASE CHANGE THOSE ACCORDING TO WHAT PROGRAM YOU ARE USING
-
-*/
 
 public class ArloTelepresenceDeviceActivtyBot {
 
