@@ -3,10 +3,11 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 
-/**
- *
- * @author Vale Tolpegin
- */
+/*
+
+Author: DarkmatterVale
+
+*/
 public class GmailTestProject
 {
    public static void main(String [] args)
