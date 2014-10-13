@@ -17,7 +17,7 @@ package arlo.telepresence.device.activtybot;
 
 /**
  *
- * @author Vale Tolpegin
+ * @author DarkmatterVale
  */
 import java.util.Scanner;
 
