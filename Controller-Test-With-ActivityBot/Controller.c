@@ -1,5 +1,11 @@
 //Controller code here for using the controller to talk to the Computer
 
+/*
+
+Author: Vale Tolpegin ( ValeT )
+
+*/
+
 #include "simpletools.h"                      // Include simple tools
 #include "fdserial.h"
 #include "adcDCpropab.h"
