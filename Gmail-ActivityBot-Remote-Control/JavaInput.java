@@ -12,15 +12,6 @@ To Do:
 
 Implement following code:
 
-vimport java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
-
-public class GmailTestProject
-{
-   public static void main(String [] args)
-   {          
         String host = "smtp.gmail.com";
         String username = "*****************@gmail.com";
         String password = "*************";
@@ -62,42 +53,32 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
+
 public class ArloTelepresenceDeviceActivtyBot {
 
-static SerialPort outputPort;
 static SerialPort inputPort;
 static String outputString = "s";
 
 public static void main(String[] args) {
-    System.out.println( "Opening serial port on COM4 " );
-    inputPort = new SerialPort("COM4");
-    try
-    {
-        inputPort.openPort();
-        System.out.println( "Setting parameters to 115200, 8, 1, 0" );
-        inputPort.setParams( 115200, 8, 1, 0 );
-    } 
-    catch ( Exception ex )
-    {
-        ex.printStackTrace();
-    }
-    
-    Scanner input = new Scanner(System.in);
+    //Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
-    outputPort = new SerialPort("COM3");
+    inputPort = new SerialPort("COM4");
     try {
         //System.out.print("Opening " + args[0] + " at");
-        System.out.print("Opening COM3 at");
-        outputPort.openPort();
+        System.out.print("Opening COM4 at");
+        inputPort.openPort();
         System.out.print(" 115200, 8, 1, 0 and ");
-        outputPort.setParams(115200, 8, 1, 0);
+        inputPort.setParams(115200, 8, 1, 0);
         //Preparing a mask. In a mask, we need to specify the types of events that we want to track.
         //Well, for example, we need to know what came some data, thus in the mask must have the
         //following value: MASK_RXCHAR. If we, for example, still need to know about changes in states 
         //of lines CTS and DSR, the mask has to look like this: SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR
         int mask = SerialPort.MASK_RXCHAR;
         //Set the prepared mask
-        outputPort.setEventsMask(mask);
         inputPort.setEventsMask( mask );
         //Add an interface through which we will receive information about events
         System.out.println("waiting for data . . .");
@@ -107,14 +88,15 @@ public static void main(String[] args) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
     while(true) {
-    // outputString = "f"; //V1: input.nextLine();
-    //System.out.println(s + "\n");
-    try {
-        outputPort.writeString( outputString );
-    } catch (SerialPortException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
+      //To Do: add gmail component
+      
+      //outputString = "f";
+      //System.out.println(outputString + "\n");
+      try {
+          outputPort.writeString( outputString );
+      } catch (SerialPortException e) {
+          e.printStackTrace();
+      }
     }
 }
 
