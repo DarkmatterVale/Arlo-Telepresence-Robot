@@ -4,7 +4,7 @@ Base code courtesy of ChrisL8
 Edited and added to by ValeT ( DarkmatterVale )
 
 To Do:
-  -Add comments ( Current comments are from ChrisL8, add to them )
+  -Add comments ( Current comments are from ChrisL8 )
   -Remove unneeded code
   -Remove output port
   -Edit out outputString
@@ -90,7 +90,8 @@ public static void main(String[] args) {
     }
     
     while(true) {
-      //To Do: add gmail component
+      //I believe that all of this code should be removed, and the while( true ) loop should be empty.
+      //***To Do: add gmail component*** REMOVE ALL OF THIS
       
       //outputString = "f";
       //System.out.println(outputString + "\n");
@@ -122,6 +123,8 @@ static class SerialPortReader implements SerialPortEventListener {
                     //System.out.println("Data: " + data); // For debugging
                     if ( data != null )
                     {
+                        //Gmail component should go here, not in the above while loop
+                      
                         System.out.print(data);
                         outputString = data;
                     }
