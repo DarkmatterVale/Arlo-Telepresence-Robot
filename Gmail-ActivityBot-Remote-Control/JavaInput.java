@@ -90,16 +90,6 @@ public static void main(String[] args) {
     }
     
     while(true) {
-      //I believe that all of this code should be removed, and the while( true ) loop should be empty.
-      //***To Do: add gmail component*** REMOVE ALL OF THIS
-      
-      //outputString = "f";
-      //System.out.println(outputString + "\n");
-      //try {
-        //  outputPort.writeString( outputString );
-      //} catch (SerialPortException e) {
-        //  e.printStackTrace();
-      //}
     }
 }
 
@@ -124,7 +114,11 @@ static class SerialPortReader implements SerialPortEventListener {
                     if ( data != null )
                     {
                         //Gmail component should go here, not in the above while loop
-                      
+                        
+                        if ( !(data.equals( outputString )) )
+                        {
+                        }
+                        
                         System.out.print(data);
                         outputString = data;
                     }
