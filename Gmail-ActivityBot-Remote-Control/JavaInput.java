@@ -7,39 +7,7 @@ To Do:
   -Add comments ( Current comments are from ChrisL8 )
   -Remove unneeded code
   -Remove output port
-  -Edit out outputString
-  -Add Gamil sending component
 
-Implement following code:
-
-        String host = "smtp.gmail.com";
-        String username = "*****************@gmail.com";
-        String password = "*************";
-        Properties props = new Properties();
-        // set any needed mail.smtps.* properties here
-        Session session = Session.getInstance(props);
-        MimeMessage msg = new MimeMessage(session);
-        // set the message content here
-        try
-        {
-            msg.setFrom();      
-            msg.setRecipients(Message.RecipientType.TO, "************@gmail.com" );
-            msg.setSubject("Subject");
-            msg.setContent("Brought to you by Carls Junior", "text/html;charset=UTF-8"); 
-            Transport t = session.getTransport("smtps");
-            try {
-                t.connect(host, username, password);
-                t.sendMessage(msg, msg.getAllRecipients());
-            } catch ( Exception ex )
-            {
-                ex.printStackTrace();
-            } finally {
-                t.close();
-            }
-        } catch ( Exception ex )
-        {
-            ex.printStackTrace();
-        }
 */
 
 /**
@@ -96,6 +64,13 @@ public static void main(String[] args) {
 
 static class SerialPortReader implements SerialPortEventListener {
     public void serialEvent(SerialPortEvent event) {
+        String host = "smtp.gmail.com";
+        String username = "*****************@gmail.com";
+        String password = "*************";
+        Properties props = new Properties();
+        // set any needed mail.smtps.* properties here
+        Session session = Session.getInstance(props);
+        MimeMessage msg = new MimeMessage(session);
         //Object type SerialPortEvent carries information about which event occurred and a value.
         //For example, if the data came a method event.getEventValue() returns us the number of bytes in the input buffer.
         /* For debugging, this should always be 1 unless we are
@@ -117,6 +92,28 @@ static class SerialPortReader implements SerialPortEventListener {
                         
                         if ( !(data.equals( outputString )) )
                         {
+                          try
+                          {
+                            // set the message content here
+                            msg.setFrom();      
+                            msg.setRecipients( Message.RecipientType.TO, "************@gmail.com" );
+                            msg.setSubject( "Subject" );
+                            msg.setContent( data, "text/html;charset=UTF-8"); 
+                            Transport t = session.getTransport("smtps");
+                            try {
+                              t.connect(host, username, password);
+                              t.sendMessage(msg, msg.getAllRecipients());
+                            } catch ( Exception ex )
+                            {
+                              ex.printStackTrace();
+                            } finally {
+                              t.close();
+                            }
+                            } catch ( Exception ex )
+                            {
+                              ex.printStackTrace();
+                            }
+                          }
                         }
                         
                         System.out.print(data);
