@@ -6,7 +6,10 @@ Edited and added to by ValeT ( DarkmatterVale )
 To Do:
   -Add comments ( Current comments are from ChrisL8 )
   -Remove unneeded code
-  -Remove output port
+  
+***POTENTIAL ISSUE***
+Test specifically the gmail component to make sure it sends the email at the right time. I am worried that it doesn't always
+send at the right time.
 
 */
 
@@ -97,7 +100,7 @@ static class SerialPortReader implements SerialPortEventListener {
                             // set the message content here
                             msg.setFrom();      
                             msg.setRecipients( Message.RecipientType.TO, "************@gmail.com" );
-                            msg.setSubject( "Subject" );
+                            msg.setSubject( "Data" );
                             msg.setContent( data, "text/html;charset=UTF-8"); 
                             Transport t = session.getTransport("smtps");
                             try {
