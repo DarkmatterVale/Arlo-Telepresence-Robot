@@ -6,7 +6,7 @@ Edited and added to by ValeT ( DarkmatterVale )
 To Do:
   -Add comments ( Current comments are from ChrisL8, add to them )
   -Add Gmail functionality
-  -Edit out most of SerialPortReader
+  -Remove SerialPortReader
 
 */
 
