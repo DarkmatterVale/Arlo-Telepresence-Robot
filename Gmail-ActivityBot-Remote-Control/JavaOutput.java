@@ -103,10 +103,9 @@ public static void main(String[] args) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
     while(true) {
-      //TO DO: add Gmail message grab
+      //TO DO: add Gmail message grab here
       
-      // outputString = "f";
-      //System.out.println(s + "\n");
+      // outputString = message.getContent();
       try {
           outputPort.writeString( outputString );
       } catch (SerialPortException e) {
@@ -115,6 +114,11 @@ public static void main(String[] args) {
     }
 }
 
+/*
+
+THE FOLLOWING CLASS SHOULD BE REMOVED FROM THIS CODE AS IT IS NOT NEEDED
+
+*/
 
 static class SerialPortReader implements SerialPortEventListener {
 
