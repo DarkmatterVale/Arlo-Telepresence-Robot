@@ -92,12 +92,18 @@ public static void main(String[] args) {
         //Well, for example, we need to know what came some data, thus in the mask must have the
         //following value: MASK_RXCHAR. If we, for example, still need to know about changes in states 
         //of lines CTS and DSR, the mask has to look like this: SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR
-        int mask = SerialPort.MASK_RXCHAR;
+        /*
+          Removed all of mask info because I am not reading anything from a serial port
+        */
+        //int mask = SerialPort.MASK_RXCHAR;
         //Set the prepared mask
-        outputPort.setEventsMask(mask);
+        //outputPort.setEventsMask(mask);
         //Add an interface through which we will receive information about events
+        /*
+          Removed all of SerialPortReader() code because I am using Gmail instead
+        */
         System.out.println("waiting for data . . .");
-        inputPort.addEventListener(new SerialPortReader());
+        //inputPort.addEventListener(new SerialPortReader());
     }
     catch (SerialPortException ex) {
         System.out.println("Serial Port Opening Exception: " + ex);
