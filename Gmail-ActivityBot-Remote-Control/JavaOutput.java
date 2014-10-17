@@ -100,7 +100,7 @@ public static void main(String[] args) {
         //outputPort.setEventsMask(mask);
         //Add an interface through which we will receive information about events
         /*
-          Removed all of SerialPortReader() code because I am using Gmail instead
+          Removed all of SerialPortReader() code because I am using Gmail get commands instead
         */
         System.out.println("waiting for data . . .");
         //inputPort.addEventListener(new SerialPortReader());
