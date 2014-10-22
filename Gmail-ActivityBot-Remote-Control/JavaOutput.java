@@ -18,9 +18,9 @@ Implement Gmail Code:
             Folder inbox = store.getFolder("Inbox");
             inbox.open(Folder.READ_ONLY);
             Message messages[] = inbox.getMessages();
-            for(Message message : messages) {
-                System.out.println( message.getSubject() );
-            }
+            messageNumber = inbox.getMessageCount();
+            
+            outputString = messages[ messageNumber ].getContent();
         } catch ( Exception ex )
         {
             ex.printStackTrace();
@@ -81,8 +81,6 @@ public static void main(String[] args) {
     }
     while(true) {
       //TO DO: add Gmail message grab here
-      
-      // outputString = message.getContent();
       try {
           outputPort.writeString( outputString );
       } catch (SerialPortException e) {
