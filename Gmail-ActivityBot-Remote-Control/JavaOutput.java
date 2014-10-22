@@ -5,11 +5,8 @@ Edited and added to by ValeT ( DarkmatterVale )
 
 To Do:
   -Add comments ( Current comments are from ChrisL8 )
-  -Add Gmail functionality
   -Remove SerialPortReader
-
-Implement Gmail Code:
-        
+  
 */
 
 /**
