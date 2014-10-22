@@ -9,22 +9,6 @@ To Do:
   -Remove SerialPortReader
 
 Implement Gmail Code:
-        try
-        {
-            Store store = session.getStore("imaps");
-            store.connect("imap.gmail.com", "**********@gmail.com", "***********");
-            System.out.println(store);
-
-            Folder inbox = store.getFolder("Inbox");
-            inbox.open(Folder.READ_ONLY);
-            Message messages[] = inbox.getMessages();
-            messageNumber = inbox.getMessageCount();
-            
-            outputString = messages[ messageNumber ].getContent();
-        } catch ( Exception ex )
-        {
-            ex.printStackTrace();
-        }
         
 */
 
@@ -80,7 +64,23 @@ public static void main(String[] args) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
     while(true) {
-      //TO DO: add Gmail message grab here
+      try
+      {
+        Store store = session.getStore("imaps");
+        store.connect("imap.gmail.com", "**********@gmail.com", "***********");
+        System.out.println(store);
+
+        Folder inbox = store.getFolder("Inbox");
+        inbox.open(Folder.READ_ONLY);
+        Message messages[] = inbox.getMessages();
+        messageNumber = inbox.getMessageCount();
+            
+        outputString = messages[ messageNumber ].getContent();
+      } catch ( Exception ex )
+      {
+        ex.printStackTrace();
+      }
+      
       try {
           outputPort.writeString( outputString );
       } catch (SerialPortException e) {
