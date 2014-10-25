@@ -73,9 +73,14 @@ public static void main(String[] args) {
         Folder inbox = store.getFolder("Inbox");
         inbox.open(Folder.READ_ONLY);
         Message messages[] = inbox.getMessages();
-        messageNumber = inbox.getMessageCount();
-            
-        outputString = messages[ messageNumber ].getContent();
+        
+        if ( inbox.getMessageCount > 213 )
+        {
+          currentMessage = messages[ inbox.getMessageCount() - 1 ];
+          outputString = currentMessage.getSubject();
+        }
+        
+        store.close();
       } catch ( Exception ex )
       {
         ex.printStackTrace();
