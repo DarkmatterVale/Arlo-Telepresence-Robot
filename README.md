@@ -11,7 +11,7 @@ Please see the HOW TO MAKE YOUR OWN page to learn about all of the specifics of 
 Current Version
 -----------------
  
- v0.4
+ v0.5
 
 The MIT License (MIT)
 -----------------
