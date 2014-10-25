@@ -1,4 +1,11 @@
-Version 0.4 ( Current Version ):
+Version 0.5 ( Current Version ):
+  -GUI control of ActivityBot
+    -Java Input Program ( Java_Input_Program extension )
+  -Java Output Program
+  -ActivityBot program
+  -Controller program
+
+Version 0.4:
   -Robot ( ActivityBot )
   -Controller ( ActivityBoard )
   -JavaInput program
