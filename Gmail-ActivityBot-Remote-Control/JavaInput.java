@@ -62,6 +62,7 @@ public static void main(String[] args) {
 
 
 static class SerialPortReader implements SerialPortEventListener {
+    @Override
     public void serialEvent(SerialPortEvent event) {
         String host = "smtp.gmail.com";
         String username = "*****************@gmail.com";
