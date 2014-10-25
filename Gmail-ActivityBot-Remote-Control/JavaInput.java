@@ -33,10 +33,10 @@ static String data = "";
 public static void main(String[] args) {
     //Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
-    inputPort = new SerialPort("COM4");
+    inputPort = new SerialPort("COM3");
     try {
         //System.out.print("Opening " + args[0] + " at");
-        System.out.print("Opening COM4 at");
+        System.out.print("Opening COM3 at");
         inputPort.openPort();
         System.out.print(" 115200, 8, 1, 0 and ");
         inputPort.setParams(115200, 8, 1, 0);
