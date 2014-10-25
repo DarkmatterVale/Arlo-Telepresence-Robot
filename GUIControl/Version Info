@@ -1,1 +1,4 @@
-Info
+Version 0.5:
+  -GUI control of ActivityBot
+  -Remote control of ActivityBot
+  -Gmail used to communicate between remote and local computer
