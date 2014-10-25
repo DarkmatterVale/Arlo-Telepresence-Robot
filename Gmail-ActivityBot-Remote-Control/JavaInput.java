@@ -14,8 +14,6 @@ To Do:
  *
  * @author DarkmatterVale
  */
-import java.util.Scanner;
-
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
