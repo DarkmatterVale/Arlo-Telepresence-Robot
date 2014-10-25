@@ -57,6 +57,12 @@ public static void main(String[] args) {
     catch (SerialPortException ex) {
         System.out.println("Serial Port Opening Exception: " + ex);
     }
+    
+    Properties props = new Properties();
+    Session session = Session.getInstance(props); 
+    MimeMessage msg = new MimeMessage(session); 
+    Message currentMessage;
+        
     while(true) {
       try
       {
