@@ -1,13 +1,17 @@
 Arlo-Telepresence-Robot
 =======================
+
 Basic Information:
+-----------------
 
 This is a tutorial to create your very own telepresence device that can be used from anywhere around the world!
 
 Please see the HOW TO MAKE YOUR OWN page to learn about all of the specifics of the project to make your own.
 
-=======================
-Current Version: v0.4
+Current Version:
+-----------------
+ 
+ v0.4
 
 =======================
 The MIT License (MIT)
