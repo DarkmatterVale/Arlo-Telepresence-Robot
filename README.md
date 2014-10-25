@@ -1,14 +1,14 @@
 Arlo-Telepresence-Robot
 =======================
 
-Basic Information:
+Basic Information
 -----------------
 
 This is a tutorial to create your very own telepresence device that can be used from anywhere around the world!
 
 Please see the HOW TO MAKE YOUR OWN page to learn about all of the specifics of the project to make your own.
 
-Current Version:
+Current Version
 -----------------
  
  v0.4
@@ -36,7 +36,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Contributing:
+Contributing
 -----------------
 
 If you would like to contribute, please create a new branch. Name it based on what you would like to add.
