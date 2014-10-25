@@ -6,6 +6,7 @@ Edited and added to by ValeT ( DarkmatterVale )
 To Do:
   -Add comments ( Current comments are from ChrisL8 )
   -Remove SerialPortReader
+  -Add dynamic COM port support
   
 */
 
