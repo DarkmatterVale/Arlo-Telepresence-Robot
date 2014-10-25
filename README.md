@@ -9,7 +9,6 @@ Current Version: v0.4
 
 =======================
 
-
 The MIT License (MIT)
 
 Copyright (c) 2014 Vale Tolpegin
@@ -31,3 +30,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+=======================
+
+Contributing:
+
+If you would like to contribute, please create a new branch. Name it based on what you would like to add.
+Once you have completed your addition, please create a pull request.
+
+Thanks and best of luck!
