@@ -1,4 +1,6 @@
-Version 0.5:
+Version 0.5 ( Current Version ):
   -GUI control of ActivityBot
-  -Remote control of ActivityBot
-  -Gmail used to communicate between remote and local computer
+    -Java Input Program ( Java_Input_Program extension )
+  -Java Output Program
+  -ActivityBot program
+  -Controller program
