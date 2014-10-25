@@ -14,6 +14,7 @@ To Do:
  *
  * @author DarkmatterVale
  */
+ 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -86,8 +87,6 @@ static class SerialPortReader implements SerialPortEventListener {
                     //System.out.println("Data: " + data); // For debugging
                     if ( data != null )
                     {
-                        //Gmail component should go here, not in the above while loop
-                        
                         if ( !(data.equals( outputString )) )
                         {
                           try
