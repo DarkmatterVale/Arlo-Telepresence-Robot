@@ -1,14 +1,15 @@
 Arlo-Telepresence-Robot
 =======================
+Basic Information:
 
-How to create your very own telepresence device with just an Arlo robot, 2 computers, and a Skype account!
+This is a tutorial to create your very own telepresence device that can be used from anywhere around the world!
+
+Please see the HOW TO MAKE YOUR OWN page to learn about all of the specifics of the project to make your own.
 
 =======================
-
 Current Version: v0.4
 
 =======================
-
 The MIT License (MIT)
 
 Copyright (c) 2014 Vale Tolpegin
@@ -32,7 +33,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 =======================
-
 Contributing:
 
 If you would like to contribute, please create a new branch. Name it based on what you would like to add.
