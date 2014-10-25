@@ -13,7 +13,6 @@ To Do:
  *
  * @author DarkmatterVale
  */
-import java.util.Scanner;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -23,7 +22,6 @@ import jssc.SerialPortException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
 
 public class ArloTelepresenceDeviceActivtyBot {
 
