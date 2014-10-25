@@ -7,6 +7,7 @@ To Do:
   -Add comments ( Current comments are from ChrisL8 )
   -Remove unneeded code
   -Add dynamic COM port support
+  -Add GUI support
 
 */
 
