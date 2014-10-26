@@ -105,6 +105,20 @@ public class GUIPanel extends JPanel
     repaint();
   }
   
+  public void setProgramStatus( String status )
+  {
+    ProgramStatus = new JLabel( "Status: " + status );
+    
+    repaint();
+  }
+  
+  public void setGmailStatus( String status )
+  {
+    GmailStatus = new JLabel( "Status: " + status );
+    
+    repaint();
+  }
+  
   public class StartButtonListener extends JPanel implements ActionListener
   {
     public void actionPerformed( ActionEvent source )
