@@ -53,6 +53,12 @@ public class GUIFrame extends JFrame
     return missionControlPanel.getProgramStatus();
   }
   
+  public void setProgramStatus( String status )
+  {
+    //Set the status symbol for the system status
+    missionControlPanel.setProgramStatus( status );
+  }
+  
   public void setGmailStatus( String status )
   {
     //Set the status symbol for Gmail panel
