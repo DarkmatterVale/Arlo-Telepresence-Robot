@@ -44,6 +44,9 @@ public class GUIPanel extends JPanel
   //Instantiate variables for the state of the program
   public boolean programStatusValue, exitValue;
   
+  //Instantiate Java Control object
+  public Control javaControl;
+  
   public GUIPanel()
   {
     //Set values for program status variables
@@ -88,26 +91,9 @@ public class GUIPanel extends JPanel
     this.add( BorderLayout.SOUTH, programStatus );
   }
   
-  public boolean getProgramStatus()
-  {
-    return programStatusValue;
-  }
-  
-  public boolean getExitValue()
-  {
-    return exitValue;
-  }
-  
   public void setSendingValue( String valueSent )
   {
     InformationSent.setText( valueSent );
-    
-    repaint();
-  }
-  
-  public void setProgramStatus( String status )
-  {
-    ProgramStatus = new JLabel( "Status: " + status );
     
     repaint();
   }
@@ -123,8 +109,15 @@ public class GUIPanel extends JPanel
   {
     public void actionPerformed( ActionEvent source )
     {
-      //Code to deal with event when Start button is pressed
-      progamStatusValue = true;
+      if ( programStatusValue == true )
+      {
+      } else if ( programStatusValue == false )
+      {
+        //Code to deal with event when Start button is pressed and the Start button has not been pressed before
+        progamStatusValue = true;
+        
+        javaControl = new Control();
+      }
     }
   }
   
@@ -132,8 +125,15 @@ public class GUIPanel extends JPanel
   {
     public void actionPerformed( ActionEvent source )
     {
-      //Deal with event when Stop button is pressed
-      programStatusValue = false;
+      if ( programStatusValue == false )
+      {
+      } else if ( programStatusValue == true )
+      {
+        //Deal with event when Stop button is pressed
+        programStatusValue = false;
+        
+        javaControl = null;
+      }
     }
   }
   
@@ -142,7 +142,9 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Exit button is pressed
-      exitValue = true;
+      //v1.0: exitValue = true;
+      
+      System.exit( 0 );
     }
   }
 }
