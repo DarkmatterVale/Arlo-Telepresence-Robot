@@ -8,8 +8,8 @@ public class Input
   
   public int getInput( int decision )
   {
-    //If the passed value is 1, get input from arrow keys
-    //Else, get input from the controller
+    //If the passed value is 0, get input from arrow keys
+    //Else if passed value is 1, get input from the controller
     //Then return the value
     
     switch decision:
