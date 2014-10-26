@@ -5,9 +5,9 @@ Edited and added to by ValeT ( DarkmatterVale )
 
 To Do:
   -Add comments ( Current comments are from ChrisL8 )
-  -Remove unneeded code
   -Add dynamic COM port support
   -Add GUI support
+  -Move inputs from this file into Input.java
 
 */
 
