@@ -37,7 +37,7 @@ public class GUIPanel extends JPanel
 {
   //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
   JButton Start, Stop, Exit;
-  JTextField informationSent;
+  JTextField InformationSent;
   JLabel Sending, ProgramStatus, GmailStatus;
   JPanel gmailPanel, programStatus;
   
@@ -67,9 +67,9 @@ public class GUIPanel extends JPanel
     
     //Add event listeners and set settings
     InformationSent.setEditable( false );
-    Start.addEventListener( new StartButtonListener() );
-    Stop.addEventListener( new StopButtonListener() );
-    Exit.addEventListener( new ExitButtonListener() );
+    Start.addActionListener( new StartButtonListener() );
+    Stop.addActionListener( new StopButtonListener() );
+    Exit.addActionListener( new ExitButtonListener() );
     
     //Add components to gmailPanel
     gmailPanel.add( Sending );
@@ -124,7 +124,7 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Code to deal with event when Start button is pressed
-      progamStatusValue = true;
+      this.progamStatusValue = true;
     }
   }
   
@@ -133,7 +133,7 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Stop button is pressed
-      programStatusValue = false;
+      this.programStatusValue = false;
     }
   }
   
@@ -142,7 +142,7 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Exit button is pressed
-      exitValue = true;
+      this.exitValue = true;
     }
   }
 }
