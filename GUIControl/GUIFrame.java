@@ -31,7 +31,7 @@ public class GUIFrame extends JFrame
     missionControl.setVisible( true );
   }
   
-  public setupFrame()
+  public void setupFrame()
   {
     //Set frame settings
     missionControl.setTitle( "Arlo Telepresence Device Mission Control" );
