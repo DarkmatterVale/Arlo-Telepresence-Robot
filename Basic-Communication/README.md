@@ -3,6 +3,8 @@ Basic Communication
 
 Basic Info
 --------------
+In this version of the code ( v0.1 ), I have successfully been able to communicate with a Propeller ActivityBoard from my
+computer using a java program via a USB cable
 
 Liscense
 --------------
