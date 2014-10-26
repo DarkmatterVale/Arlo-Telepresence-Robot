@@ -35,12 +35,23 @@ import java.util.*;
 
 public class GUIPanel
 {
-  //Code for GUI goes in here
-  //Instantiate 3 buttons, 1 border, 4 JLabels, 1 text field
+  //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
+  JButton Start, Stop, Exit;
+  JTextField informationSent;
+  JLabel Sending, ProgramStatus, GmailStatus;
   
   public GUIPanel()
   {
     //Set all of the values for the Panel
+    Start = new JButton( "Start" );
+    Stop = new JButton( "Stop" );
+    Exit = new JButton( "Exit" );
+    
+    InformationSent = new JTextField( "Waiting for connection..." );
+    
+    Sending = new JLabel( "Sending: " );
+    GmailStatus = new JLabel( "Waiting for connection..." );
+    ProgramStatus = new JLabel( "Status: OFF" );
   }
   
   public class StartButtonListener extends JPanel implements ActionListener
