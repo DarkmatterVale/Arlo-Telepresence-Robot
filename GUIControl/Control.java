@@ -30,6 +30,9 @@ static SerialPort inputPort;
 static String outputString = "s";
 static String data = "";
 
+//GUI component initialization should go here
+//GUI should be used in serialPortReader()
+
 public static void main(String[] args) {
     //Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
