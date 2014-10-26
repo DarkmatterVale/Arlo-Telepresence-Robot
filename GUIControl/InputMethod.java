@@ -1,6 +1,6 @@
-public class Input
+public class InputMethod
 {
-  public Input()
+  public InputMethod()
   {
   }
   
