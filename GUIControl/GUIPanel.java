@@ -33,7 +33,7 @@ import java.awt.event.*;
 
 import java.util.*;
 
-public class GUIPanel
+public class GUIPanel extends JPanel
 {
   //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
   JButton Start, Stop, Exit;
@@ -41,8 +41,15 @@ public class GUIPanel
   JLabel Sending, ProgramStatus, GmailStatus;
   JPanel gmailPanel, programStatus;
   
+  //Instantiate variables for the state of the program
+  boolean programStatusValue, exitValue;
+  
   public GUIPanel()
   {
+    //Set values for program status variables
+    programStatusValue = false;
+    exitValue = false;
+    
     //Create panels
     gmailPanel = new JPanel();
     programStatus = new JPanel();
@@ -81,11 +88,22 @@ public class GUIPanel
     this.add( BorderLayout.SOUTH, programStatus );
   }
   
+  public boolean getProgramStatus()
+  {
+    return programStatusValue;
+  }
+  
+  public boolean getExitValue()
+  {
+    return exitValue;
+  }
+  
   public class StartButtonListener extends JPanel implements ActionListener
   {
     public void actionPerformed( ActionEvent source )
     {
       //Code to deal with event when Start button is pressed
+      progamStatusValue = true;
     }
   }
   
@@ -94,6 +112,7 @@ public class GUIPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Stop button is pressed
+      programStatusValue = false;
     }
   }
   
@@ -102,6 +121,7 @@ public class GUIPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Exit button is pressed
+      exitValue = true;
     }
   }
 }
