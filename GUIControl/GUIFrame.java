@@ -7,7 +7,7 @@ Author: DarkmatterVale ( ValeT )
 /*
 
 To Do list:
-  - Add setter and getter methods
+  - Complete
 */
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ public class GUIFrame extends JFrame
   JFrame missionControl;
   JPanel missionControlPanel;
   
-  public GUIFrame()
+  public static void main( String [] args )
   {
     //Initialize the JFrame
     missionControl = new JFrame();
@@ -43,31 +43,5 @@ public class GUIFrame extends JFrame
     
     //Add panel to frame
     missionControl.add( missionControlPanel );
-  }
-  
-  //Add setter and getter methods below
-  
-  public boolean getProgramStatus()
-  {
-    //Return program status ( whether the start button has been pressed )
-    return missionControlPanel.getProgramStatus();
-  }
-  
-  public void setProgramStatus( String status )
-  {
-    //Set the status symbol for the system status
-    missionControlPanel.setProgramStatus( status );
-  }
-  
-  public void setGmailStatus( String status )
-  {
-    //Set the status symbol for Gmail panel
-    missionControlPanel.setGmailStatus( status );
-  }
-  
-  public void setSendingValue( String value )
-  {
-    //Set the sending value for the Gmail panel
-    missionControlPanel.setSendingValue( value );
   }
 }
