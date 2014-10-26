@@ -28,4 +28,26 @@ ALL OTHER FEATURES SHOULD BE ADDED TO LATER VERSIONS
 public class GUIPanel
 {
   //Code for GUI goes in here
+  //Instantiate 3 buttons, 1 border, 4 JLabels, 1 text field
+  
+  public GUIPanel()
+  {
+    //Set all of the values for the Panel
+  }
+  
+  public class StartButtonListener extends JPanel implements ActionListener
+  {
+    //Deal with event when Start button is pressed
+  }
+  
+  public class StopButtonListener extends JPanel implements ActionListener
+  {
+    //Deal with event when Stop button is pressed
+  }
+  
+  public class ExitButtonListener extends JPanel implements ActionListener
+  {
+    //Deal with event when Exit button is pressed
+  }
+  }
 }
