@@ -7,7 +7,6 @@ To Do:
   -Add comments ( Current comments are from ChrisL8 )
   -Add dynamic COM port support
   -Add GUI support
-  -Move inputs from this file into Input.java
 
 */
 
