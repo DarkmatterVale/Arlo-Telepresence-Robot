@@ -35,7 +35,7 @@ public class GUIFrame extends JFrame
   {
     //Set frame settings
     missionControl.setTitle( "Arlo Telepresence Device Mission Control" );
-    missionControl.setDefaultCloseOption( JFrame.EXIT_ON_CLOSE );
+    missionControl.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     missionControl.setSize( 500, 500 );
     
     //Create a GUIPanel object
