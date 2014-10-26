@@ -15,6 +15,7 @@ To Do:
  * @author DarkmatterVale
  */
  
+//Importing libraries
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -23,6 +24,12 @@ import jssc.SerialPortException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
 
 public class ArloTelepresenceDeviceActivtyBot {
 
