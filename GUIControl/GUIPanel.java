@@ -42,7 +42,7 @@ public class GUIPanel extends JPanel
   JPanel gmailPanel, programStatus;
   
   //Instantiate variables for the state of the program
-  boolean programStatusValue, exitValue;
+  public boolean programStatusValue, exitValue;
   
   public GUIPanel()
   {
@@ -98,7 +98,7 @@ public class GUIPanel extends JPanel
     return exitValue;
   }
   
-  public void setSendingValue( String valueSent)
+  public void setSendingValue( String valueSent )
   {
     InformationSent.setText( valueSent );
     
@@ -124,7 +124,7 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Code to deal with event when Start button is pressed
-      this.progamStatusValue = true;
+      progamStatusValue = true;
     }
   }
   
@@ -133,7 +133,7 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Stop button is pressed
-      this.programStatusValue = false;
+      programStatusValue = false;
     }
   }
   
@@ -142,7 +142,7 @@ public class GUIPanel extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       //Deal with event when Exit button is pressed
-      this.exitValue = true;
+      exitValue = true;
     }
   }
 }
