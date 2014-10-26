@@ -10,4 +10,6 @@ public class GUIFrame
   {
     //Create a GUIPanel object
   }
+  
+  //Add setter and getter methods
 }
