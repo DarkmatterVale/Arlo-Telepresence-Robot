@@ -1,3 +1,17 @@
+/*
+
+Author: Vale Tolpegin
+
+*/
+
+/*
+
+To Do list:
+  - Add arrow key input support
+  - Add ability to send Gmail emails
+  
+*/
+
 public class ArrowKeyInput
 {
   public ArrowKeyInput()
