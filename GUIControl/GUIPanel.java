@@ -39,10 +39,15 @@ public class GUIPanel
   JButton Start, Stop, Exit;
   JTextField informationSent;
   JLabel Sending, ProgramStatus, GmailStatus;
+  JPanel gmailPanel, programStatus;
   
   public GUIPanel()
   {
-    //Set all of the values for the Panel
+    //Create panels
+    gmailPanel = new JPanel();
+    programStatus = new JPanel();
+    
+    //Set all of the values for the panels
     Start = new JButton( "Start" );
     Stop = new JButton( "Stop" );
     Exit = new JButton( "Exit" );
@@ -52,6 +57,28 @@ public class GUIPanel
     Sending = new JLabel( "Sending: " );
     GmailStatus = new JLabel( "Waiting for connection..." );
     ProgramStatus = new JLabel( "Status: OFF" );
+    
+    //Add event listeners and set settings
+    InformationSent.setEditable( false );
+    Start.addEventListener( new StartButtonListener() );
+    Stop.addEventListener( new StopButtonListener() );
+    Exit.addEventListener( new ExitButtonListener() );
+    
+    //Add components to gmailPanel
+    gmailPanel.add( Sending );
+    gmailPanel.add( InformationSent );
+    gmailPanel.add( GmailStatus );
+    
+    //Add components to programStatus panel
+    programStatus.add( ProgramStatus );
+    programStatus.add( Start );
+    programStatus.add( Stop );
+    programStatus.add( Exit );
+    
+    //Add the panels to the frame
+    this.setLayout( new BorderLayout() );
+    this.add( BorderLayout.CENTER, gmailPanel );
+    this.add( BorderLayout.SOUTH, programStatus );
   }
   
   public class StartButtonListener extends JPanel implements ActionListener
