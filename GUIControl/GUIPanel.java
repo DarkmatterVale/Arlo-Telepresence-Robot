@@ -25,6 +25,14 @@ ALL OTHER FEATURES SHOULD BE ADDED TO LATER VERSIONS
 
 */
 
+import javax.swing.*;
+import javax.swing.event.*;
+
+import java.awt.*;
+import java.awt.event.*;
+
+import java.util.*;
+
 public class GUIPanel
 {
   //Code for GUI goes in here
