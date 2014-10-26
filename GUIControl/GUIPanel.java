@@ -83,17 +83,25 @@ public class GUIPanel
   
   public class StartButtonListener extends JPanel implements ActionListener
   {
-    //Deal with event when Start button is pressed
+    public void actionPerformed( ActionEvent source )
+    {
+      //Code to deal with event when Start button is pressed
+    }
   }
   
   public class StopButtonListener extends JPanel implements ActionListener
   {
-    //Deal with event when Stop button is pressed
+    public void actionPerformed( ActionEvent source )
+    {
+      //Deal with event when Stop button is pressed
+    }
   }
   
   public class ExitButtonListener extends JPanel implements ActionListener
   {
-    //Deal with event when Exit button is pressed
-  }
+    public void actionPerformed( ActionEvent source )
+    {
+      //Deal with event when Exit button is pressed
+    }
   }
 }
