@@ -103,6 +103,9 @@ static class SerialPortReader implements SerialPortEventListener {
                             try {
                               t.connect(host, username, password);
                               t.sendMessage(msg, msg.getAllRecipients());
+                              
+                              //Set GUI component that shows user what is being sent over email
+                              
                             } catch ( Exception ex )
                             {
                               ex.printStackTrace();
