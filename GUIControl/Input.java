@@ -1,5 +1,3 @@
-Code for decidng which input to use ( arrow or controller )
-
 public class Input
 {
   public Input()
