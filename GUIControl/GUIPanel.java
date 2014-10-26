@@ -98,6 +98,13 @@ public class GUIPanel extends JPanel
     return exitValue;
   }
   
+  public void setSendingValue( String valueSent)
+  {
+    InformationSent.setText( valueSent );
+    
+    repaint();
+  }
+  
   public class StartButtonListener extends JPanel implements ActionListener
   {
     public void actionPerformed( ActionEvent source )
