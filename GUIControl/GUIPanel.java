@@ -89,6 +89,21 @@ public class GUIPanel extends JPanel
     this.setLayout( new BorderLayout() );
     this.add( BorderLayout.CENTER, gmailPanel );
     this.add( BorderLayout.SOUTH, programStatus );
+    
+    while ( true )
+    {
+      try
+      {
+        //Edit fields based on values from javaControl object
+      }
+      catch ( Exception ex )
+      {
+        //If unable to grab the data from javaControl object, set values to Error...
+        InformationSent.setText( "Error..." );
+        ProgramStatus = new JLabel( "Error..." );
+        GmailStatus = new JLabel( "Error..." );
+      }
+    }
   }
   
   public void setSendingValue( String valueSent )
