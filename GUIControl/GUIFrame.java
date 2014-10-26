@@ -15,7 +15,9 @@ import java.awt.*;
 
 public class GUIFrame extends JFrame
 {
+  //Create the JFrame and JPanel to hold all of the content
   JFrame missionControl;
+  JPanel missionControlPanel;
   
   public GUIFrame()
   {
@@ -44,4 +46,22 @@ public class GUIFrame extends JFrame
   }
   
   //Add setter and getter methods below
+  
+  public boolean getProgramStatus()
+  {
+    //Return program status ( whether the start button has been pressed )
+    return missionControlPanel.getProgramStatus();
+  }
+  
+  public void setGmailStatus( String status )
+  {
+    //Set the status symbol for Gmail panel
+    missionControlPanel.setGmailStatus( status );
+  }
+  
+  public void setSendingValue( String value )
+  {
+    //Set the sending value for the Gmail panel
+    missionControlPanel.setSendingValue( value );
+  }
 }
