@@ -1,3 +1,15 @@
+/*
+
+Author: DarkmatterVale ( ValeT )
+
+*/
+
+/*
+
+To Do list:
+  - Add setter and getter methods
+*/
+
 public class GUIFrame
 {
   public GUIFrame()
@@ -11,5 +23,5 @@ public class GUIFrame
     //Create a GUIPanel object
   }
   
-  //Add setter and getter methods
+  //Add setter and getter methods below
 }
