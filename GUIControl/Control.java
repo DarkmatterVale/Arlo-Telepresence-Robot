@@ -31,6 +31,10 @@ static SerialPort inputPort;
 static String outputString = "s";
 static String data = "";
 
+static String programStatus = "OK";
+static String gmailStatus = "OK";
+static String mostRecentSent = "OFF";
+
 //GUI component initialization should go here
 //GUI should be used in serialPortReader()
 
@@ -57,6 +61,7 @@ public ArloTelepresenceDeviceActivtyBot {
     }
     catch (SerialPortException ex) {
         System.out.println("Serial Port Opening Exception: " + ex);
+        programStatus = "ERROR...";
     }
     
     while(true) {
@@ -127,15 +132,15 @@ static class SerialPortReader implements SerialPortEventListener {
                             } finally {
                               t.close();
                             }
-                            } catch ( Exception ex )
-                            {
-                              ex.printStackTrace();
-                            }
+                          } catch ( Exception ex )
+                          {
+                            ex.printStackTrace();
                           }
                         }
+                      }
                         
-                        System.out.print(data);
-                        outputString = data;
+                      System.out.print(data);
+                      outputString = data;
                     }
                 }
                 catch (SerialPortException ex) {
