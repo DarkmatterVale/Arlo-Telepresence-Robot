@@ -96,7 +96,7 @@ public class GUIPanel extends JPanel
       {
         //Edit fields based on values from javaControl object
         ProgramStatus = javaControl.getProgramStatus();
-        InformationSent = javaControl.getMostRecent();
+        InformationSent = javaControl.getInfoSent();
         GmailStatus = javaControl.getGmailStatus();
       }
       catch ( Exception ex )
