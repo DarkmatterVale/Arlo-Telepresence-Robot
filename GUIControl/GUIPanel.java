@@ -134,7 +134,7 @@ public class GUIPanel extends JPanel
         //Code to deal with event when Start button is pressed and the Start button has not been pressed before
         progamStatusValue = true;
         
-        javaControl = new Control();
+        javaControl = new MissionControl();
       }
     }
   }
