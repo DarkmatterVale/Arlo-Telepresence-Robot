@@ -65,6 +65,13 @@ public ArloTelepresenceDeviceActivtyBot {
     }
     
     while(true) {
+      if ( gmailStatus.equals( "Error..." ) )
+      {
+        programStatus = "Error...";
+      } else
+      {
+        programStatus = "OK";
+      }
     }
 }
 
