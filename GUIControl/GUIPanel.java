@@ -95,13 +95,16 @@ public class GUIPanel extends JPanel
       try
       {
         //Edit fields based on values from javaControl object
+        ProgramStatus = javaControl.getProgramStatus();
+        InformationSent = javaControl.getMostRecent();
+        GmailStatus = javaControl.getGmailStatus();
       }
       catch ( Exception ex )
       {
         //If unable to grab the data from javaControl object, set values to Error...
-        InformationSent.setText( "Error..." );
-        ProgramStatus = new JLabel( "Error..." );
-        GmailStatus = new JLabel( "Error..." );
+        InformationSent.setText( "Communication Error" );
+        ProgramStatus = new JLabel( "Communication Error" );
+        GmailStatus = new JLabel( "Communication Error" );
       }
     }
   }
