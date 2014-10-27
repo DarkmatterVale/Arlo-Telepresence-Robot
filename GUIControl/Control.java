@@ -34,7 +34,7 @@ static String data = "";
 //GUI component initialization should go here
 //GUI should be used in serialPortReader()
 
-public static void main(String[] args) {
+public ArloTelepresenceDeviceActivtyBot {
     //Scanner input = new Scanner(System.in);
     //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
     inputPort = new SerialPort("COM3");
@@ -63,6 +63,20 @@ public static void main(String[] args) {
     }
 }
 
+public String getGmailStatus()
+{
+  return gmailStatus;
+}
+
+public String getProgramStatus()
+{
+  return programStatus;
+}
+
+public String getInfoSent()
+{
+  return mostRecentSent;
+}
 
 static class SerialPortReader implements SerialPortEventListener {
     @Override
