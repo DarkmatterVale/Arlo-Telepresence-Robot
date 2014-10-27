@@ -117,17 +117,21 @@ static class SerialPortReader implements SerialPortEventListener {
                             // set the message content here
                             msg.setFrom();      
                             msg.setRecipients( Message.RecipientType.TO, "************@gmail.com" );
-                            msg.setSubject( "Data" );
-                            msg.setContent( data, "text/html;charset=UTF-8"); 
+                            msg.setSubject( data );
+                            msg.setContent( "Data", "text/html;charset=UTF-8"); 
                             Transport t = session.getTransport("smtps");
+                            
+                            mostRecentSent = data;
                             try {
                               t.connect(host, username, password);
                               t.sendMessage(msg, msg.getAllRecipients());
                               
                               //Set GUI component that shows user what is being sent over email
+                              gmailStatus = "OK";
                               
                             } catch ( Exception ex )
                             {
+                              gmailStatus = "Error...";
                               ex.printStackTrace();
                             } finally {
                               t.close();
