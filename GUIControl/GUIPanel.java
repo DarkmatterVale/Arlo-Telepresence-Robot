@@ -109,20 +109,6 @@ public class GUIPanel extends JPanel
     }
   }
   
-  public void setSendingValue( String valueSent )
-  {
-    InformationSent.setText( valueSent );
-    
-    repaint();
-  }
-  
-  public void setGmailStatus( String status )
-  {
-    GmailStatus = new JLabel( "Status: " + status );
-    
-    repaint();
-  }
-  
   public class StartButtonListener extends JPanel implements ActionListener
   {
     public void actionPerformed( ActionEvent source )
