@@ -94,10 +94,14 @@ public class GUIPanel extends JPanel
     {
       try
       {
-        //Edit fields based on values from javaControl object
-        ProgramStatus = javaControl.getProgramStatus();
-        InformationSent = javaControl.getInfoSent();
-        GmailStatus = javaControl.getGmailStatus();
+        //If there is a javaControl object and the program is started
+        if ( javaControl != null )
+        {
+          //Edit fields based on values from javaControl object
+          ProgramStatus = javaControl.getProgramStatus();
+          InformationSent = javaControl.getInfoSent();
+          GmailStatus = javaControl.getGmailStatus();
+        }
       }
       catch ( Exception ex )
       {
