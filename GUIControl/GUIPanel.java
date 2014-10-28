@@ -45,7 +45,7 @@ public class GUIPanel extends JPanel
   public boolean programStatusValue, exitValue;
   
   //Instantiate Java Control object
-  public Control javaControl;
+  public MissionControl javaControl;
   
   public GUIPanel()
   {
