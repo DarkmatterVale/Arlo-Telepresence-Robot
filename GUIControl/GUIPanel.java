@@ -1,8 +1,9 @@
-/*
+package telepresence.device.test;
 
-Author: DarkmatterVale
-
-*/
+/**
+ *
+ * @author vale tolpegin
+ */
 
 /*
 
@@ -26,36 +27,41 @@ ALL OTHER FEATURES SHOULD BE ADDED TO LATER VERSIONS
 */
 
 import javax.swing.*;
-import javax.swing.event.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
+import jssc.SerialPort;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
+import jssc.SerialPortException;
+
 import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 
 public class GUIPanel extends JPanel
 {
+ 
   //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
   JButton Start, Stop, Exit;
-  JTextField InformationSent;
+  JTextField InformationSent, GmailStatusField, ProgramStatusField;
   JLabel Sending, ProgramStatus, GmailStatus;
-  JPanel gmailPanel, programStatus;
+  JPanel gmailPanel, programStatusPanel;
   
   //Instantiate variables for the state of the program
-  public boolean programStatusValue, exitValue;
+  public boolean programStatusValue;
   
   //Instantiate Java Control object
-  public MissionControl javaControl;
+  public Thread javaControl;
   
   public GUIPanel()
   {
     //Set values for program status variables
     programStatusValue = false;
-    exitValue = false;
     
     //Create panels
-    gmailPanel = new JPanel();
-    programStatus = new JPanel();
+    gmailPanel = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
+    programStatusPanel = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
     
     //Set all of the values for the panels
     Start = new JButton( "Start" );
@@ -63,12 +69,16 @@ public class GUIPanel extends JPanel
     Exit = new JButton( "Exit" );
     
     InformationSent = new JTextField( "Waiting for connection..." );
+    GmailStatusField = new JTextField( "Waiting for connection..." );
+    ProgramStatusField = new JTextField( "OFF" );
     
     Sending = new JLabel( "Sending: " );
-    GmailStatus = new JLabel( "Waiting for connection..." );
-    ProgramStatus = new JLabel( "Status: OFF" );
+    GmailStatus = new JLabel( "Status:" );
+    ProgramStatus = new JLabel( "Status:" );
     
     //Add event listeners and set settings
+    ProgramStatusField.setEditable( false );
+    GmailStatusField.setEditable( false );
     InformationSent.setEditable( false );
     Start.addActionListener( new StartButtonListener() );
     Stop.addActionListener( new StopButtonListener() );
@@ -78,81 +88,185 @@ public class GUIPanel extends JPanel
     gmailPanel.add( Sending );
     gmailPanel.add( InformationSent );
     gmailPanel.add( GmailStatus );
+    gmailPanel.add( GmailStatusField );
     
     //Add components to programStatus panel
-    programStatus.add( ProgramStatus );
-    programStatus.add( Start );
-    programStatus.add( Stop );
-    programStatus.add( Exit );
+    programStatusPanel.add( ProgramStatus );
+    programStatusPanel.add( ProgramStatusField );
+    programStatusPanel.add( Start );
+    programStatusPanel.add( Stop );
+    programStatusPanel.add( Exit );
     
+    System.out.println( "ADDING LAYOUT..." );
     //Add the panels to the frame
     this.setLayout( new BorderLayout() );
-    this.add( BorderLayout.CENTER, gmailPanel );
-    this.add( BorderLayout.SOUTH, programStatus );
-    
-    while ( true )
-    {
-      try
-      {
-        //If there is a javaControl object and the program is started
-        if ( javaControl != null )
-        {
-          //Edit fields based on values from javaControl object
-          ProgramStatus = javaControl.getProgramStatus();
-          InformationSent = javaControl.getInfoSent();
-          GmailStatus = javaControl.getGmailStatus();
-        }
-      }
-      catch ( Exception ex )
-      {
-        //If unable to grab the data from javaControl object, set values to Error...
-        InformationSent.setText( "Communication Error" );
-        ProgramStatus = new JLabel( "Communication Error" );
-        GmailStatus = new JLabel( "Communication Error" );
-      }
-    }
+    this.add( gmailPanel, BorderLayout.CENTER );
+    this.add( programStatusPanel, BorderLayout.SOUTH );
   }
   
   public class StartButtonListener extends JPanel implements ActionListener
   {
+    @Override
     public void actionPerformed( ActionEvent source )
     {
-      if ( programStatusValue == true )
-      {
-      } else if ( programStatusValue == false )
-      {
         //Code to deal with event when Start button is pressed and the Start button has not been pressed before
-        progamStatusValue = true;
-        
-        javaControl = new MissionControl();
-      }
+        programStatusValue = true;
+
+        javaControl = new Thread( new MissionControl() );
+        javaControl.start();
     }
   }
   
   public class StopButtonListener extends JPanel implements ActionListener
   {
+    @Override
     public void actionPerformed( ActionEvent source )
     {
-      if ( programStatusValue == false )
-      {
-      } else if ( programStatusValue == true )
-      {
-        //Deal with event when Stop button is pressed
-        programStatusValue = false;
-        
-        javaControl = null;
-      }
+      programStatusValue = false;
     }
   }
   
   public class ExitButtonListener extends JPanel implements ActionListener
   {
+    @Override
     public void actionPerformed( ActionEvent source )
     {
-      //Deal with event when Exit button is pressed
-      //v1.0: exitValue = true;
-      
+      //Deal with event when Exit button is pressed      
       System.exit( 0 );
     }
   }
+  
+  public class MissionControl extends Thread
+    {
+    //Create port settings and variables
+    SerialPort inputPort;
+    String outputString = "s";
+    String data = "";
+    
+    @Override
+    public void run()
+    {
+        ProgramStatusField.setText( "OK" );
+        
+        //Scanner input = new Scanner(System.in);
+        //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
+        inputPort = new SerialPort("COM3");
+        try {
+            //System.out.print("Opening " + args[0] + " at");
+            //System.out.print("Opening COM3 at");
+            inputPort.openPort();
+            //System.out.print(" 115200, 8, 1, 0 and ");
+            inputPort.setParams(115200, 8, 1, 0);
+            //Preparing a mask. In a mask, we need to specify the types of events that we want to track.
+            //Well, for example, we need to know what came some data, thus in the mask must have the
+            //following value: MASK_RXCHAR. If we, for example, still need to know about changes in states 
+            //of lines CTS and DSR, the mask has to look like this: SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR
+            int mask = SerialPort.MASK_RXCHAR;
+            //Set the prepared mask
+            inputPort.setEventsMask( mask );
+            //Add an interface through which we will receive information about events
+            //System.out.println("waiting for data . . .");
+            inputPort.addEventListener(new SerialPortReader());
+        }
+        catch (SerialPortException ex) {
+            System.out.println("Serial Port Opening Exception: " + ex);
+            ProgramStatusField.setText( "ERROR..." );
+        }
+    }
+
+    class SerialPortReader extends JPanel implements SerialPortEventListener {
+        @Override
+        public void serialEvent(SerialPortEvent event) {
+            String host = "smtp.gmail.com";
+            String username = "valetolpegin@gmail.com";
+            String password = "Vale123Tolpegin";
+            Properties props = new Properties();
+            // set any needed mail.smtps.* properties here
+            Session session = Session.getInstance(props);
+            MimeMessage msg = new MimeMessage(session);
+            //Object type SerialPortEvent carries information about which event occurred and a value.
+            //For example, if the data came a method event.getEventValue() returns us the number of bytes in the input buffer.
+            /* For debugging, this should always be 1 unless we are
+             * waiting for more than one byte, otherwise it just junks up the output :)
+             */
+            //System.out.println("Bytes: " + event.getEventType());
+            if(event.isRXCHAR() && programStatusValue == true ){
+                /* See original code,
+                 * it waited for a certain number of bytes,
+                 * but if I want the characters, why do that?
+                 */
+                //if(event.getEventValue() == 10){
+                    try {
+                        data = inputPort.readString();
+                        //System.out.println("Data: " + data); // For debugging
+                        if ( data != null )
+                        {
+                            if ( !(data.equals( outputString )) )
+                            {
+                              try
+                              {
+                                // set the message content here
+                                msg.setFrom();      
+                                msg.setRecipients( Message.RecipientType.TO, "valetolpegin@gmail.com" );
+                                msg.setSubject( data );
+                                msg.setContent( "Data", "text/html;charset=UTF-8"); 
+                                Transport t = session.getTransport("smtps");
+
+                                InformationSent.setText( data );
+                                
+                                try {
+                                  t.connect(host, username, password);
+                                  t.sendMessage(msg, msg.getAllRecipients());
+
+                                  //Set GUI component that shows user what is being sent over email
+                                  GmailStatusField.setText( "OK" );
+                                } catch ( Exception ex )
+                                {
+                                  GmailStatusField.setText( "Error..." );
+                                  ProgramStatusField.setText( "Error" );
+                                  ex.printStackTrace();
+                                } finally {
+                                  t.close();
+                                }
+                              } catch ( Exception ex )
+                              {
+                                ex.printStackTrace();
+                              }
+                            }
+                          }
+
+                          //System.out.print(data);
+                          outputString = data;
+                    }
+                    catch (SerialPortException ex) {
+                        System.out.println("Serial Port Reading Exception: " + ex);
+                    }
+                    
+                    ProgramStatusField.setText( "OK" );
+                //}
+            }
+            //If the CTS line status has changed, then the method event.getEventValue() returns 1 if the line is ON and 0 if it is OFF.
+            else if(event.isCTS()){
+                if(event.getEventValue() == 1){
+                    System.out.println("CTS - ON");
+                }
+                else {
+                    System.out.println("CTS - OFF");
+                }
+            }
+            else if(event.isDSR()){
+                if(event.getEventValue() == 1){
+                    System.out.println("DSR - ON");
+                }
+                else {
+                    System.out.println("DSR - OFF");
+                }
+            } else if ( programStatusValue == false )
+            {
+                GmailStatusField.setText( "OFF" );
+                InformationSent.setText( "Waiting for connection..." );
+            }
+        }
+    }
+    }
 }
