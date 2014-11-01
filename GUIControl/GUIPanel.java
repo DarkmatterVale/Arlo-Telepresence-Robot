@@ -1,14 +1,12 @@
-package telepresence.device.test;
-
 /**
  *
- * @author vale tolpegin
+ * @author Vale Tolpegin
  */
 
 /*
 
 To Do list:
-  -Add basic GUI
+  -Add documentation
 
 */
 
