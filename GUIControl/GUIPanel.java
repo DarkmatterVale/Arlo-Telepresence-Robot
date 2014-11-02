@@ -140,7 +140,7 @@ public class GUIPanel extends JPanel
   
   //Java object used to communicate with the ActivityBoard and Gmail
   public class MissionControl extends Thread
-    {
+  {
     //Create port settings and variables
     SerialPort inputPort;
     String outputString = "s";
@@ -181,8 +181,9 @@ public class GUIPanel extends JPanel
     //This class is called when the program is started and communication has begun between the ActivityBorad and the computer
     class SerialPortReader extends JPanel implements SerialPortEventListener {
         @Override
-        public void serialEvent(SerialPortEvent event) {
-            //Setting the settings for
+        public void serialEvent(SerialPortEvent event)
+        {
+            //Setting the settings for Gmail
             String host = "smtp.gmail.com";
             String username = "***********@gmail.com";
             String password = "****************";
@@ -196,6 +197,7 @@ public class GUIPanel extends JPanel
              * waiting for more than one byte, otherwise it just junks up the output :)
              */
             //System.out.println("Bytes: " + event.getEventType());
+            //If there is a command sent over USB and the program is supposed to be on
             if(event.isRXCHAR() && programStatusValue == true ){
                 /* See original code,
                  * it waited for a certain number of bytes,
@@ -203,10 +205,13 @@ public class GUIPanel extends JPanel
                  */
                 //if(event.getEventValue() == 10){
                     try {
+                        //Get data from USB port
                         data = inputPort.readString();
                         //System.out.println("Data: " + data); // For debugging
+                        //If there is data
                         if ( data != null )
                         {
+                            //And the data coming in is not the same as before
                             if ( !(data.equals( outputString )) )
                             {
                               try
@@ -218,9 +223,11 @@ public class GUIPanel extends JPanel
                                 msg.setContent( "Data", "text/html;charset=UTF-8"); 
                                 Transport t = session.getTransport("smtps");
 
+                                //Set the GUI InformationSent box
                                 InformationSent.setText( data );
                                 
                                 try {
+                                  //Send the message over Gmail
                                   t.connect(host, username, password);
                                   t.sendMessage(msg, msg.getAllRecipients());
 
@@ -228,15 +235,17 @@ public class GUIPanel extends JPanel
                                   GmailStatusField.setText( "OK" );
                                 } catch ( Exception ex )
                                 {
+                                  //If there is an error, set the fields
                                   GmailStatusField.setText( "Error..." );
                                   ProgramStatusField.setText( "Error" );
-                                  ex.printStackTrace();
+                                  
+                                  //ex.printStackTrace(); For debugging
                                 } finally {
                                   t.close();
                                 }
                               } catch ( Exception ex )
                               {
-                                ex.printStackTrace();
+                                //ex.printStackTrace(); For debugging
                               }
                             }
                           }
@@ -248,6 +257,7 @@ public class GUIPanel extends JPanel
                         System.out.println("Serial Port Reading Exception: " + ex);
                     }
                     
+                    //As long as there is nothing wrong with the sending of the message
                     ProgramStatusField.setText( "OK" );
                 //}
             }
