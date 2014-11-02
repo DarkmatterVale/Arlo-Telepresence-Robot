@@ -110,11 +110,17 @@ public class GUIPanel extends JPanel
     @Override
     public void actionPerformed( ActionEvent source )
     {
-        //Code to deal with event when Start button is pressed and the Start button has not been pressed before
-        programStatusValue = true;
+        if ( programStatusValue == true )
+        {
+        }
+        else if ( programStatusValue == false )
+        {
+          //Code to deal with event when Start button is pressed and the Start button has not been pressed before
+          programStatusValue = true;
 
-        javaControl = new Thread( new MissionControl() );
-        javaControl.start();
+          javaControl = new Thread( new MissionControl() );
+          javaControl.start();
+        }
     }
   }
   
