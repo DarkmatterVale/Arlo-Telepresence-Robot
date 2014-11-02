@@ -7,6 +7,7 @@
 
 To Do list:
   -Add documentation
+  -Dynamic COM port support
 
 */
 
@@ -24,6 +25,7 @@ ALL OTHER FEATURES SHOULD BE ADDED TO LATER VERSIONS
 
 */
 
+//Importing libraries
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -102,6 +104,7 @@ public class GUIPanel extends JPanel
     this.add( programStatusPanel, BorderLayout.SOUTH );
   }
   
+  //Class used to deal with what happens when the Start button is pressed
   public class StartButtonListener extends JPanel implements ActionListener
   {
     @Override
@@ -115,6 +118,7 @@ public class GUIPanel extends JPanel
     }
   }
   
+  //Class used to deal with what happens when the Stop button is pressed
   public class StopButtonListener extends JPanel implements ActionListener
   {
     @Override
@@ -134,6 +138,7 @@ public class GUIPanel extends JPanel
     }
   }
   
+  //Java object used to communicate with the ActivityBoard and Gmail
   public class MissionControl extends Thread
     {
     //Create port settings and variables
@@ -141,16 +146,16 @@ public class GUIPanel extends JPanel
     String outputString = "s";
     String data = "";
     
+    //Method invoked when the thread is started
     @Override
     public void run()
     {
+        //Setting the program status value to OK once the thread is started
         ProgramStatusField.setText( "OK" );
         
-        //Scanner input = new Scanner(System.in);
-        //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
+        //Opening port on COM3 --- ADD DYNAMIC COM PORT SUPPORT
         inputPort = new SerialPort("COM3");
         try {
-            //System.out.print("Opening " + args[0] + " at");
             //System.out.print("Opening COM3 at");
             inputPort.openPort();
             //System.out.print(" 115200, 8, 1, 0 and ");
@@ -167,17 +172,20 @@ public class GUIPanel extends JPanel
             inputPort.addEventListener(new SerialPortReader());
         }
         catch (SerialPortException ex) {
+            //Display that there was an error with opening the port
             System.out.println("Serial Port Opening Exception: " + ex);
             ProgramStatusField.setText( "ERROR..." );
         }
     }
 
+    //This class is called when the program is started and communication has begun between the ActivityBorad and the computer
     class SerialPortReader extends JPanel implements SerialPortEventListener {
         @Override
         public void serialEvent(SerialPortEvent event) {
+            //Setting the settings for
             String host = "smtp.gmail.com";
-            String username = "valetolpegin@gmail.com";
-            String password = "Vale123Tolpegin";
+            String username = "***********@gmail.com";
+            String password = "****************";
             Properties props = new Properties();
             // set any needed mail.smtps.* properties here
             Session session = Session.getInstance(props);
@@ -205,7 +213,7 @@ public class GUIPanel extends JPanel
                               {
                                 // set the message content here
                                 msg.setFrom();      
-                                msg.setRecipients( Message.RecipientType.TO, "valetolpegin@gmail.com" );
+                                msg.setRecipients( Message.RecipientType.TO, "***********@gmail.com" );
                                 msg.setSubject( data );
                                 msg.setContent( "Data", "text/html;charset=UTF-8"); 
                                 Transport t = session.getTransport("smtps");
