@@ -1,6 +1,14 @@
-Version 0.5 ( Current Version ):
+Version 0.6 ( Current Version ):
+  - GUI interface
+    -Java Input Program
+    -Gmail communication
+  - Input of either:
+    - Joystick Controller
+    - Arrow Keys
+
+Version 0.5:
   -GUI control of ActivityBot
-    -Java Input Program ( Java_Input_Program extension )
+    -Java Input Program
   -Java Output Program
   -ActivityBot program
   -Controller program
