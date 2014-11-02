@@ -6,7 +6,7 @@
 /*
 
 To Do list:
-  -Add documentation
+  -Add Arrow Key Input
   -Dynamic COM port support
 
 */
