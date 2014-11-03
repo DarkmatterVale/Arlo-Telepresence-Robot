@@ -7,6 +7,8 @@
 
 To Do list:
   -Add Arrow Key Input
+    -Add Input method option in GUI
+    -Add Arrow Key Input class as another thread asynchronous to MissionControl thread
   -Dynamic COM port support
 
 */
