@@ -98,8 +98,7 @@ public class GUIPanel extends JPanel
     programStatusPanel.add( Start );
     programStatusPanel.add( Stop );
     programStatusPanel.add( Exit );
-    
-    System.out.println( "ADDING LAYOUT..." );
+
     //Add the panels to the frame
     this.setLayout( new BorderLayout() );
     this.add( gmailPanel, BorderLayout.CENTER );
