@@ -1,6 +1,6 @@
 /**
  *
- * @author Vale Tolpegin
+ * @author Vale Tolpegin ( valetolpegin@gmail.com )
  */
 
 /*
