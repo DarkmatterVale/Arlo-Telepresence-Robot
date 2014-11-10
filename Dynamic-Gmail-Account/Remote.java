@@ -1,10 +1,12 @@
 /*
 Base code courtesy of ChrisL8
-Edited and added to by ValeT ( DarkmatterVale )
+Edited and added to by Vale Tolpegin ( valetolpegin@gmail.com )
+
 To Do:
   -Add comments ( Current comments are from ChrisL8 )
   -Remove SerialPortReader
   -Add dynamic COM port support
+  -Add GUI support
   
 */
 
