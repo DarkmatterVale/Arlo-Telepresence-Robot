@@ -2,7 +2,7 @@ package telepresence.device.test;
 
 /**
  *
- * @author vale_000
+ * @author Vale Tolpegin
  */
 import javax.swing.*;
 
@@ -13,10 +13,8 @@ public class GUIFrameControl extends JFrame
     //Initialize the JFrame
     JFrame missionControl = new TelepresenceDeviceTest();
     
-    //Create a GUIPanel object
+    //Create a GUIPanel object and add panel to frame
     JPanel missionControlPanel = new GUIPanel();
-    
-    //Add panel to frame
     missionControl.add( missionControlPanel );
     
     //set frame to visible
