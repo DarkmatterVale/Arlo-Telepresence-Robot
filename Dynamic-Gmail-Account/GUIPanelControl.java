@@ -8,6 +8,7 @@
 To Do list:
   -Add documentation
   -Dynamic COM port support
+  -Add dynamic Gmail support
 
 */
 
