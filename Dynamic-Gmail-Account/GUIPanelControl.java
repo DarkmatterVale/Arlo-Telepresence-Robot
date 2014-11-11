@@ -45,8 +45,8 @@ public class GUIPanelControl extends JPanel
  
   //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
   JButton Start, Stop, Exit;
-  JTextField InformationSent, GmailStatusField, ProgramStatusField;
-  JLabel Sending, ProgramStatus, GmailStatus;
+  JTextField InformationSent, GmailStatusField, ProgramStatusField, GmailUsername, GmailPassword;
+  JLabel Sending, ProgramStatus, GmailStatus, GmailUsernameLabel, GmailPasswordLabel;
   JPanel gmailPanel, programStatusPanel;
   
   //Instantiate variables for the state of the program
@@ -57,30 +57,36 @@ public class GUIPanelControl extends JPanel
   
   public GUIPanelControl()
   {
-    //Set values for program status variables
+    //Set values for program status variable
     programStatusValue = false;
     
     //Create panels
-    gmailPanel = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
+    gmailPanel =         new JPanel( new FlowLayout( FlowLayout.CENTER ) );
     programStatusPanel = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
     
     //Set all of the values for the panels
     Start = new JButton( "Start" );
-    Stop = new JButton( "Stop" );
-    Exit = new JButton( "Exit" );
+    Stop =  new JButton( "Stop" );
+    Exit =  new JButton( "Exit" );
     
-    InformationSent = new JTextField( "Waiting for connection..." );
-    GmailStatusField = new JTextField( "Waiting for connection..." );
+    InformationSent =    new JTextField( "Waiting for connection..." );
+    GmailStatusField =   new JTextField( "Waiting for connection..." );
     ProgramStatusField = new JTextField( "OFF" );
+    GmailUsername =      new JTextField( "Enter Gmail username here" );
+    GmailPassword =      new JTextField( "Enter Gmail password here" );
     
-    Sending = new JLabel( "Sending: " );
-    GmailStatus = new JLabel( "Status:" );
-    ProgramStatus = new JLabel( "Status:" );
+    Sending =            new JLabel( "Sending: " );
+    GmailStatus =        new JLabel( "Status:" );
+    ProgramStatus =      new JLabel( "Status:" );
+    GmailUsernameLabel = new JLabel( "Username:" );
+    GmailPasswordLabel = new JLabel( "Password:" );
     
     //Add event listeners and set settings
     ProgramStatusField.setEditable( false );
     GmailStatusField.setEditable( false );
     InformationSent.setEditable( false );
+    GmailUsername.setEditable( true );
+    GmailPassword.setEditable( true );
     Start.addActionListener( new StartButtonListener() );
     Stop.addActionListener( new StopButtonListener() );
     Exit.addActionListener( new ExitButtonListener() );
@@ -90,6 +96,10 @@ public class GUIPanelControl extends JPanel
     gmailPanel.add( InformationSent );
     gmailPanel.add( GmailStatus );
     gmailPanel.add( GmailStatusField );
+    gmailPanel.add( GmailUsernameLabel );
+    gmailPanel.add( GmailUsername );
+    gmailPanel.add( GmailPasswordLabel );
+    gmailPanel.add( GmailPassword );
     
     //Add components to programStatus panel
     programStatusPanel.add( ProgramStatus );
