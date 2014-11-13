@@ -200,6 +200,11 @@ public class GUIPanelControl extends JPanel
         @Override
         public void serialEvent(SerialPortEvent event)
         {
+            /*
+            
+              *** The username and password need to be changed based on the fields ***
+            
+            */
             //Setting the settings for Gmail
             String host = "smtp.gmail.com";
             String username = "***********@gmail.com";
