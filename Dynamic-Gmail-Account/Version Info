@@ -1,5 +1,7 @@
 Version 0.6 ( Current Version ):
-  - Add support for any Gmail account
-    - Only on Control side until remote gets GUI support
-  - ActivityBot controlled using Controller
-    - Data sent over Gmail from controller via Java program
+  -GUI control of ActivityBot
+    -Java Input Program ( control )
+      -Any Gmail account can be used
+    -Controller program ( controller )
+  -Java Output Program ( remote )
+  -ActivityBot program ( robot )
