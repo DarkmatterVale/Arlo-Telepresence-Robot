@@ -1,10 +1,10 @@
 Version 0.6 ( Current Version ):
-  - GUI interface
-    -Java Input Program
-    -Gmail communication
-  - Input of either:
-    - Joystick Controller
-    - Arrow Keys
+  -GUI control of ActivityBot
+    -Java Input Program ( control )
+      -Any Gmail account can be used
+    -Controller program ( controller )
+  -Java Output Program ( remote )
+  -ActivityBot program ( robot )
 
 Version 0.5:
   -GUI control of ActivityBot
