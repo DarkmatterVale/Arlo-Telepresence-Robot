@@ -42,9 +42,11 @@ import javax.mail.internet.*;
 
 public class GUIPanelControl extends JPanel
 {
- 
+  //Creating username and password variables for the Gmail account
+  public String username, password;
+  
   //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
-  JButton Start, Stop, Exit;
+  JButton Start, Stop, Exit, GmailAccountSwitch;
   JTextField InformationSent, GmailStatusField, ProgramStatusField, GmailUsername, GmailPassword;
   JLabel Sending, ProgramStatus, GmailStatus, GmailUsernameLabel, GmailPasswordLabel;
   JPanel gmailPanel, programStatusPanel;
@@ -65,9 +67,10 @@ public class GUIPanelControl extends JPanel
     programStatusPanel = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
     
     //Set all of the values for the panels
-    Start = new JButton( "Start" );
-    Stop =  new JButton( "Stop" );
-    Exit =  new JButton( "Exit" );
+    Start =              new JButton( "Start" );
+    Stop =               new JButton( "Stop" );
+    Exit =               new JButton( "Exit" );
+    GmailAccountSwitch = new JButton( "Switch Gmail Accounts" );
     
     InformationSent =    new JTextField( "Waiting for connection..." );
     GmailStatusField =   new JTextField( "Waiting for connection..." );
@@ -90,6 +93,7 @@ public class GUIPanelControl extends JPanel
     Start.addActionListener( new StartButtonListener() );
     Stop.addActionListener( new StopButtonListener() );
     Exit.addActionListener( new ExitButtonListener() );
+    GmailAccountSwitch.addActionListener( new GmailAccountSwitchListener() );
     
     //Add components to gmailPanel
     gmailPanel.add( Sending );
@@ -100,6 +104,7 @@ public class GUIPanelControl extends JPanel
     gmailPanel.add( GmailUsername );
     gmailPanel.add( GmailPasswordLabel );
     gmailPanel.add( GmailPassword );
+    gmailPanel.add( GmailAccountSwitch );
     
     //Add components to programStatus panel
     programStatusPanel.add( ProgramStatus );
@@ -113,6 +118,21 @@ public class GUIPanelControl extends JPanel
     this.setLayout( new BorderLayout() );
     this.add( gmailPanel, BorderLayout.CENTER );
     this.add( programStatusPanel, BorderLayout.SOUTH );
+  }
+  
+  //Class used to deal with what happens when the Switch Gmail Account button is pressed
+  public class GmailAccountSwitchListener extends JPanel implements ActionListener
+  {
+    @Override
+    public void actionPerformed( ActionEvent source )
+    {
+      if ( programStatusValue == false )
+      {
+        //Send message to old Gmail account that Gmail account has been switched, send new credentials
+        username = GmailUsername.getText();
+        password = GmailPassword.getText();
+      }
+    }
   }
   
   //Class used to deal with what happens when the Start button is pressed
@@ -207,8 +227,8 @@ public class GUIPanelControl extends JPanel
             */
             //Setting the settings for Gmail
             String host = "smtp.gmail.com";
-            String username = "***********@gmail.com";
-            String password = "****************";
+            username = "***********@gmail.com";
+            password = "****************";
             Properties props = new Properties();
             // set any needed mail.smtps.* properties here
             Session session = Session.getInstance(props);
