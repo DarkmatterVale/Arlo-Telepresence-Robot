@@ -59,8 +59,10 @@ public class GUIPanelControl extends JPanel
   
   public GUIPanelControl()
   {
-    //Set values for program status variable
+    //Set values for program
     programStatusValue = false;
+    username           = "";
+    password           = "";
     
     //Create panels
     gmailPanel =         new JPanel( new FlowLayout( FlowLayout.CENTER ) );
@@ -131,6 +133,29 @@ public class GUIPanelControl extends JPanel
         if ( !username.equals( "" ) && !password.equals( "" ) )
         {
           //Send message to old Gmail account that Gmail account has been switched, send new credentials
+          String host = "smtp.gmail.com";
+          Properties props = new Properties();
+          // set any needed mail.smtps.* properties here
+          Session session = Session.getInstance(props);
+          MimeMessage msg = new MimeMessage(session);
+          
+          // set the message content here
+          msg.setFrom();      
+          msg.setRecipients( Message.RecipientType.TO, username );
+          msg.setSubject( "newgmailaccount " + username + " " + password );
+          msg.setContent( "", "text/html;charset=UTF-8"); 
+          Transport t = session.getTransport("smtps");
+          
+          try {
+            //Send the message over Gmail
+            t.connect(host, username, password);
+            t.sendMessage(msg, msg.getAllRecipients());
+          } catch ( Exception ex )
+          {
+            //ex.printStackTrace(); For debugging
+          } finally {
+            t.close();
+          }
         } else
         {
           //Set new Gmail account and reset data fields
@@ -139,9 +164,10 @@ public class GUIPanelControl extends JPanel
           
           GmailUsername.setText( "" );
           GmailPassword.setText( "" );
-          
-          repaint();
         }
+      } else if ( programStatusValue == true )
+      {
+        //Create a JOptionPane message saying to stop the program to switch Gmail accounts
       }
     }
   }
@@ -231,15 +257,14 @@ public class GUIPanelControl extends JPanel
         @Override
         public void serialEvent(SerialPortEvent event)
         {
-            /*
-            
-              *** The username and password need to be changed based on the fields ***
-            
-            */
             //Setting the settings for Gmail
             String host = "smtp.gmail.com";
-            username = "***********@gmail.com";
-            password = "****************";
+            //If Gmail account hasn't been setup, switch to default ( stars )
+            if ( username.equals( "" ) || password.equals( "" ) )
+            {
+              username = "***********@gmail.com";
+              password = "****************";
+            }
             Properties props = new Properties();
             // set any needed mail.smtps.* properties here
             Session session = Session.getInstance(props);
@@ -271,7 +296,7 @@ public class GUIPanelControl extends JPanel
                               {
                                 // set the message content here
                                 msg.setFrom();      
-                                msg.setRecipients( Message.RecipientType.TO, "***********@gmail.com" );
+                                msg.setRecipients( Message.RecipientType.TO, username );
                                 msg.setSubject( data );
                                 msg.setContent( "Data", "text/html;charset=UTF-8"); 
                                 Transport t = session.getTransport("smtps");
