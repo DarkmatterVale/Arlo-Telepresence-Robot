@@ -128,9 +128,20 @@ public class GUIPanelControl extends JPanel
     {
       if ( programStatusValue == false )
       {
-        //Send message to old Gmail account that Gmail account has been switched, send new credentials
-        username = GmailUsername.getText();
-        password = GmailPassword.getText();
+        if ( !username.equals( "" ) && !password.equals( "" ) )
+        {
+          //Send message to old Gmail account that Gmail account has been switched, send new credentials
+        } else
+        {
+          //Set new Gmail account and reset data fields
+          username = GmailUsername.getText();
+          password = GmailPassword.getText();
+          
+          GmailUsername.setText( "" );
+          GmailPassword.setText( "" );
+          
+          repaint();
+        }
       }
     }
   }
