@@ -138,14 +138,14 @@ public class GUIPanelControl extends JPanel
     } else if ( os.contains( "mac" ) )
     {
         //JOptionPane dialog box saying OS is not supported
-        JOptionPane.showMessageDialog( null, os + " is not supported currently", "Invalid OS", JOptionPane.ERROR_MESSAGE );
+        JOptionPane.showMessageDialog( null, os + " is not supported", "Invalid OS", JOptionPane.ERROR_MESSAGE );
 
         //return false since os is not supported
         return false;
     } else
     {
         //JOptionPane dialog box saying OS is not supported
-        JOptionPane.showMessageDialog( null, os + " is not supported currently", "Invalid OS", JOptionPane.ERROR_MESSAGE );
+        JOptionPane.showMessageDialog( null, os + " is not supported", "Invalid OS", JOptionPane.ERROR_MESSAGE );
 
         //return false since the os is not supported
         return false;
