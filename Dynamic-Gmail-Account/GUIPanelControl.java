@@ -180,7 +180,7 @@ public class GUIPanelControl extends JPanel
 
                     try {
                         //Send the message over Gmail
-                        t.connect(host, username, password);
+                        t.connect(host, defaultUsername, defaultPassword);
                         t.sendMessage(msg, msg.getAllRecipients());
                     } catch ( Exception ex )
                     {
@@ -196,6 +196,12 @@ public class GUIPanelControl extends JPanel
                 //Set new Gmail account and reset data fields
                 defaultUsername = GmailUsername.getText();
                 defaultUsername = GmailPassword.getText();
+                
+                if ( username.equals( "" ) && password.equals( "" ) )
+                {
+                    username = defaultUsername;
+                    password = defaultPassword;
+                }
           
                 GmailUsername.setText( "Enter Gmail username here" );
                 GmailPassword.setText( "Enter Gmail password here" );
@@ -225,7 +231,6 @@ public class GUIPanelControl extends JPanel
           MimeMessage msg = new MimeMessage(session);
           
           try {
-              
             // set the message content here
             msg.setFrom();      
             msg.setRecipients( Message.RecipientType.TO, username );
@@ -236,7 +241,7 @@ public class GUIPanelControl extends JPanel
           
               try {
                 //Send the message over Gmail
-                t.connect(host, username, password);
+                t.connect(host, defaultUsername, defaultPassword);
                 t.sendMessage(msg, msg.getAllRecipients());
               } catch ( Exception ex )
               {
@@ -252,6 +257,12 @@ public class GUIPanelControl extends JPanel
           //Set new Gmail account and reset data fields
           username = GmailUsername.getText();
           password = GmailPassword.getText();
+          
+          if ( defaultUsername.equals( "" ) && defaultPassword.equals( "" ) )
+          {
+              defaultUsername = username;
+              defaultPassword = password;
+          }
           
           GmailUsername.setText( "Enter Gmail username here" );
           GmailPassword.setText( "Enter Gmail password here" );
@@ -356,8 +367,8 @@ public class GUIPanelControl extends JPanel
             //If Gmail account hasn't been setup, switch to default ( stars )
             if ( username.equals( "" ) || password.equals( "" ) )
             {
-              username = "***********@gmail.com";
-              password = "****************";
+              username = defaultUsername;
+              password = defaultPassword;
             }
             Properties props = new Properties();
             // set any needed mail.smtps.* properties here
