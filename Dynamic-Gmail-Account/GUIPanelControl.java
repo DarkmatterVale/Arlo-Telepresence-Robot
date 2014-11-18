@@ -115,7 +115,6 @@ public class GUIPanelControl extends JPanel
     programStatusPanel.add( Stop );
     programStatusPanel.add( Exit );
     
-    System.out.println( "ADDING LAYOUT..." );
     //Add the panels to the frame
     this.setLayout( new BorderLayout() );
     this.add( gmailPanel, BorderLayout.CENTER );
@@ -199,6 +198,8 @@ public class GUIPanelControl extends JPanel
     public void actionPerformed( ActionEvent source )
     {
       programStatusValue = false;
+      
+      ProgramStatusField.setText( "OFF" );
     }
   }
   
