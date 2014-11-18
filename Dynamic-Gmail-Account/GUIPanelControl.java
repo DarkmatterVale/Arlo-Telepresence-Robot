@@ -1,3 +1,4 @@
+package arlo.telepresence.device;
 /**
  *
  * @author Vale Tolpegin ( valetolpegin@gmail.com )
@@ -43,10 +44,10 @@ import javax.mail.internet.*;
 public class GUIPanelControl extends JPanel
 {
   //Creating username and password variables for the Gmail account
-  public String username, password;
+  public String username, password, defaultUsername, defaultPassword;
   
   //Instantiate 3 buttons, 1 border, 3 JLabels, 1 text field
-  JButton Start, Stop, Exit, GmailAccountSwitch;
+  JButton Start, Stop, Exit, GmailAccountSwitch, GmailAccountDefault;
   JTextField InformationSent, GmailStatusField, ProgramStatusField, GmailUsername, GmailPassword;
   JLabel Sending, ProgramStatus, GmailStatus, GmailUsernameLabel, GmailPasswordLabel;
   JPanel gmailPanel, programStatusPanel;
@@ -63,16 +64,19 @@ public class GUIPanelControl extends JPanel
     programStatusValue = false;
     username           = "";
     password           = "";
+    defaultUsername    = "";
+    defaultPassword    = "";
     
     //Create panels
     gmailPanel =         new JPanel( new FlowLayout( FlowLayout.CENTER ) );
     programStatusPanel = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
     
     //Set all of the values for the panels
-    Start =              new JButton( "Start" );
-    Stop =               new JButton( "Stop" );
-    Exit =               new JButton( "Exit" );
-    GmailAccountSwitch = new JButton( "Switch Gmail Accounts" );
+    Start =               new JButton( "Start" );
+    Stop =                new JButton( "Stop" );
+    Exit =                new JButton( "Exit" );
+    GmailAccountSwitch =  new JButton( "Switch Gmail Accounts" );
+    GmailAccountDefault = new JButton( "Set Gmail Account to Default" );
     
     InformationSent =    new JTextField( "Waiting for connection..." );
     GmailStatusField =   new JTextField( "Waiting for connection..." );
@@ -96,6 +100,7 @@ public class GUIPanelControl extends JPanel
     Stop.addActionListener( new StopButtonListener() );
     Exit.addActionListener( new ExitButtonListener() );
     GmailAccountSwitch.addActionListener( new GmailAccountSwitchListener() );
+    GmailAccountDefault.addActionListener( new GmailAccountDefaultListener() );
     
     //Add components to gmailPanel
     gmailPanel.add( Sending );
@@ -107,6 +112,7 @@ public class GUIPanelControl extends JPanel
     gmailPanel.add( GmailPasswordLabel );
     gmailPanel.add( GmailPassword );
     gmailPanel.add( GmailAccountSwitch );
+    gmailPanel.add( GmailAccountDefault );
     
     //Add components to programStatus panel
     programStatusPanel.add( ProgramStatus );
@@ -119,6 +125,86 @@ public class GUIPanelControl extends JPanel
     this.setLayout( new BorderLayout() );
     this.add( gmailPanel, BorderLayout.CENTER );
     this.add( programStatusPanel, BorderLayout.SOUTH );
+  }
+  
+  public boolean detectOs()
+  {
+    //detect OS
+    String os = System.getProperty( "os.name", "generic" ).toLowerCase();
+
+    if ( os.contains( "win" ) )
+    {
+        return true;
+    } else if ( os.contains( "mac" ) )
+    {
+        //JOptionPane dialog box saying OS is not supported
+        JOptionPane.showMessageDialog( null, os + " is not supported currently", "Invalid OS", JOptionPane.ERROR_MESSAGE );
+
+        //return false since os is not supported
+        return false;
+    } else
+    {
+        //JOptionPane dialog box saying OS is not supported
+        JOptionPane.showMessageDialog( null, os + " is not supported currently", "Invalid OS", JOptionPane.ERROR_MESSAGE );
+
+        //return false since the os is not supported
+        return false;
+    }
+  }
+  
+  //Class used to deal with what happens when the Set Gmail Account button is pressed
+  public class GmailAccountDefaultListener extends JPanel implements ActionListener
+  {
+    @Override
+    public void actionPerformed( ActionEvent source )
+    {
+        if ( programStatusValue == false )
+        {
+            if ( !username.equals( "" ) && !password.equals( "" ) )
+            {
+                //Send message to old Gmail account that Gmail account has been switched, send new credentials
+                String host = "smtp.gmail.com";
+                Properties props = new Properties();
+                // set any needed mail.smtps.* properties here
+                Session session = Session.getInstance(props);
+                MimeMessage msg = new MimeMessage(session);
+
+                try {
+                    // set the message content here
+                    msg.setFrom();      
+                    msg.setRecipients( Message.RecipientType.TO, username );
+                    msg.setSubject( "defaultaccount " + defaultUsername + " " + defaultPassword );
+                    msg.setContent( "", "text/html;charset=UTF-8"); 
+
+                    Transport t = session.getTransport("smtps");
+
+                    try {
+                        //Send the message over Gmail
+                        t.connect(host, username, password);
+                        t.sendMessage(msg, msg.getAllRecipients());
+                    } catch ( Exception ex )
+                    {
+                        //ex.printStackTrace(); For debugging
+                    } finally {
+                        t.close();
+                    }
+                } catch ( Exception ex )
+                {
+                }
+            } else
+            {
+                //Set new Gmail account and reset data fields
+                defaultUsername = GmailUsername.getText();
+                defaultUsername = GmailPassword.getText();
+          
+                GmailUsername.setText( "Enter Gmail username here" );
+                GmailPassword.setText( "Enter Gmail password here" );
+            }
+        } else if ( programStatusValue == true )
+          {
+              //show JOptionPane window saying program must be off to set default Gmail account
+          }
+      }
   }
   
   //Class used to deal with what happens when the Switch Gmail Account button is pressed
@@ -138,22 +224,28 @@ public class GUIPanelControl extends JPanel
           Session session = Session.getInstance(props);
           MimeMessage msg = new MimeMessage(session);
           
-          // set the message content here
-          msg.setFrom();      
-          msg.setRecipients( Message.RecipientType.TO, username );
-          msg.setSubject( "newgmailaccount " + username + " " + password );
-          msg.setContent( "", "text/html;charset=UTF-8"); 
-          Transport t = session.getTransport("smtps");
-          
           try {
-            //Send the message over Gmail
-            t.connect(host, username, password);
-            t.sendMessage(msg, msg.getAllRecipients());
+              
+            // set the message content here
+            msg.setFrom();      
+            msg.setRecipients( Message.RecipientType.TO, username );
+            msg.setSubject( "newgmailaccount " + username + " " + password );
+            msg.setContent( "", "text/html;charset=UTF-8"); 
+          
+            Transport t = session.getTransport("smtps");
+          
+              try {
+                //Send the message over Gmail
+                t.connect(host, username, password);
+                t.sendMessage(msg, msg.getAllRecipients());
+              } catch ( Exception ex )
+              {
+                //ex.printStackTrace(); For debugging
+              } finally {
+                t.close();
+              }
           } catch ( Exception ex )
           {
-            //ex.printStackTrace(); For debugging
-          } finally {
-            t.close();
           }
         } else
         {
@@ -161,12 +253,13 @@ public class GUIPanelControl extends JPanel
           username = GmailUsername.getText();
           password = GmailPassword.getText();
           
-          GmailUsername.setText( "" );
-          GmailPassword.setText( "" );
+          GmailUsername.setText( "Enter Gmail username here" );
+          GmailPassword.setText( "Enter Gmail password here" );
         }
       } else if ( programStatusValue == true )
       {
         //Create a JOptionPane message saying to stop the program to switch Gmail accounts
+        JOptionPane.showMessageDialog( null, "Program must be off to switch Gmail accounts", "", JOptionPane.ERROR_MESSAGE );
       }
     }
   }
@@ -180,7 +273,7 @@ public class GUIPanelControl extends JPanel
         if ( programStatusValue == true )
         {
         }
-        else if ( programStatusValue == false )
+        else if ( programStatusValue == false && detectOs() )
         {
           //Code to deal with event when Start button is pressed and the Start button has not been pressed before
           programStatusValue = true;
