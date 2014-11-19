@@ -25,7 +25,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class GUIPanelControl extends JPanel
+public class GUIPanelRemote extends JPanel
 {
   //Creating username and password variables for the Gmail account
   public String username, password, defaultUsername, defaultPassword;
@@ -313,9 +313,9 @@ public class GUIPanelControl extends JPanel
     @Override
     public void run()
     {
-        //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
-    outputPort = new SerialPort("COM3");
-    try {
+      //serialPort = new SerialPort(args[0]); // Use this to get the COM port form the command line when you bild a JAR file.
+      outputPort = new SerialPort("COM3");
+      try {
         //System.out.print("Opening " + args[0] + " at");
         System.out.print("Opening COM3 at");
         outputPort.openPort();
@@ -337,156 +337,45 @@ public class GUIPanelControl extends JPanel
         */
         System.out.println("waiting for data . . .");
         //inputPort.addEventListener(new SerialPortReader());
-    }
-    catch (SerialPortException ex) {
+      }
+      catch (SerialPortException ex) {
         System.out.println("Serial Port Opening Exception: " + ex);
-    }
+      }
     
-    Properties props = new Properties();
-    Session session = Session.getInstance(props); 
-    MimeMessage msg = new MimeMessage(session); 
-    Message currentMessage;
+      Properties props = new Properties();
+      Session session = Session.getInstance(props); 
+      MimeMessage msg = new MimeMessage(session); 
+      Message currentMessage;
         
-    while(true) {
-      try
-      {
-        Store store = session.getStore("imaps");
-        store.connect("imap.gmail.com", "**********@gmail.com", "***********");
-        System.out.println(store);
-
-        Folder inbox = store.getFolder("Inbox");
-        inbox.open(Folder.READ_ONLY);
-        Message messages[] = inbox.getMessages();
-        
-        if ( inbox.getMessageCount > 213 )
+      while(true) {
+        try
         {
-          currentMessage = messages[ inbox.getMessageCount() - 1 ];
-          outputString = currentMessage.getSubject();
-        }
+          Store store = session.getStore("imaps");
+          store.connect("imap.gmail.com", "**********@gmail.com", "***********");
+          System.out.println(store);
+
+          Folder inbox = store.getFolder("Inbox");
+          inbox.open(Folder.READ_ONLY);
+          Message messages[] = inbox.getMessages();
         
-        store.close();
-      } catch ( Exception ex )
-      {
-        ex.printStackTrace();
-      }
+          if ( inbox.getMessageCount > 213 )
+          {
+            currentMessage = messages[ inbox.getMessageCount() - 1 ];
+            outputString = currentMessage.getSubject();
+          }
+        
+          store.close();
+        } catch ( Exception ex )
+        {
+          ex.printStackTrace();
+        }
       
-      try {
+        try {
           outputPort.writeString( outputString );
-      } catch (SerialPortException e) {
+        } catch (SerialPortException e) {
           e.printStackTrace();
+        }
       }
     }
-    }
-
-    //This class is called when the program is started and communication has begun between the ActivityBorad and the computer
-    class SerialPortReader extends JPanel implements SerialPortEventListener {
-        @Override
-        public void serialEvent(SerialPortEvent event)
-        {
-            //Setting the settings for Gmail
-            String host = "smtp.gmail.com";
-            //If Gmail account hasn't been setup, switch to default ( stars )
-            if ( username.equals( "" ) || password.equals( "" ) )
-            {
-              username = defaultUsername;
-              password = defaultPassword;
-            }
-            Properties props = new Properties();
-            // set any needed mail.smtps.* properties here
-            Session session = Session.getInstance(props);
-            MimeMessage msg = new MimeMessage(session);
-            //Object type SerialPortEvent carries information about which event occurred and a value.
-            //For example, if the data came a method event.getEventValue() returns us the number of bytes in the input buffer.
-            /* For debugging, this should always be 1 unless we are
-             * waiting for more than one byte, otherwise it just junks up the output :)
-             */
-            //System.out.println("Bytes: " + event.getEventType());
-            //If there is a command sent over USB and the program is supposed to be on
-            if(event.isRXCHAR() && programStatusValue == true ){
-                /* See original code,
-                 * it waited for a certain number of bytes,
-                 * but if I want the characters, why do that?
-                 */
-                //if(event.getEventValue() == 10){
-                    try {
-                        //Get data from USB port
-                        data = inputPort.readString();
-                        //System.out.println("Data: " + data); // For debugging
-                        //If there is data
-                        if ( data != null )
-                        {
-                            //And the data coming in is not the same as before
-                            if ( !(data.equals( outputString )) )
-                            {
-                              try
-                              {
-                                // set the message content here
-                                msg.setFrom();      
-                                msg.setRecipients( Message.RecipientType.TO, username );
-                                msg.setSubject( data );
-                                msg.setContent( "Data", "text/html;charset=UTF-8"); 
-                                Transport t = session.getTransport("smtps");
-
-                                //Set the GUI InformationSent box
-                                InformationSent.setText( data );
-                                
-                                try {
-                                  //Send the message over Gmail
-                                  t.connect(host, username, password);
-                                  t.sendMessage(msg, msg.getAllRecipients());
-
-                                  //Set GUI component that shows user what is being sent over email
-                                  GmailStatusField.setText( "OK" );
-                                } catch ( Exception ex )
-                                {
-                                  //If there is an error, set the fields
-                                  GmailStatusField.setText( "Error..." );
-                                  ProgramStatusField.setText( "Error" );
-                                  
-                                  //ex.printStackTrace(); For debugging
-                                } finally {
-                                  t.close();
-                                }
-                              } catch ( Exception ex )
-                              {
-                                //ex.printStackTrace(); For debugging
-                              }
-                            }
-                          }
-
-                          //System.out.print(data);
-                          outputString = data;
-                    }
-                    catch (SerialPortException ex) {
-                        System.out.println("Serial Port Reading Exception: " + ex);
-                    }
-                    
-                    //As long as there is nothing wrong with the sending of the message
-                    ProgramStatusField.setText( "OK" );
-                //}
-            }
-            //If the CTS line status has changed, then the method event.getEventValue() returns 1 if the line is ON and 0 if it is OFF.
-            else if(event.isCTS()){
-                if(event.getEventValue() == 1){
-                    System.out.println("CTS - ON");
-                }
-                else {
-                    System.out.println("CTS - OFF");
-                }
-            }
-            else if(event.isDSR()){
-                if(event.getEventValue() == 1){
-                    System.out.println("DSR - ON");
-                }
-                else {
-                    System.out.println("DSR - OFF");
-                }
-            } else if ( programStatusValue == false )
-            {
-                GmailStatusField.setText( "OFF" );
-                InformationSent.setText( "Waiting for connection..." );
-            }
-        }
-    }
-    }
+}
 }
