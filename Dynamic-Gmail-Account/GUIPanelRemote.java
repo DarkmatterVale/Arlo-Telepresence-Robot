@@ -391,8 +391,11 @@ public class GUIPanelRemote extends JPanel
     public boolean checkInput()
     {
       //Check input for list of predetermined commands
-      //for test, always return true
-      return true;
+      String [] commands = { "" };
+      String [] parsedInput = outputString.parse( " " );
+      
+      //for testing and debugging, always return true
+      //return true;
     }
 }
 }
