@@ -372,13 +372,27 @@ public class GUIPanelRemote extends JPanel
         {
           ex.printStackTrace();
         }
-      
-        try {
-          outputPort.writeString( outputString );
-        } catch (SerialPortException e) {
-          e.printStackTrace();
+        
+        //If incoming data is relevent to robot
+        if ( checkInput() )
+        {
+          try {
+            outputPort.writeString( outputString );
+          } catch (SerialPortException e) {
+            e.printStackTrace();
+          }
+        } else
+        {
+          //data incoming is not relevant to robot movement, exit if statement
         }
       }
+    }
+    
+    public boolean checkInput()
+    {
+      //Check input for list of predetermined commands
+      //for test, always return true
+      return true;
     }
 }
 }
