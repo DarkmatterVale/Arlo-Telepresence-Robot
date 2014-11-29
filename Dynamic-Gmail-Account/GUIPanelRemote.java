@@ -108,6 +108,10 @@ public class GUIPanelRemote extends JPanel
     this.setLayout( new BorderLayout() );
     this.add( gmailPanel, BorderLayout.CENTER );
     this.add( programStatusPanel, BorderLayout.SOUTH );
+    
+    //Start read program whenever applet is started
+    javaControl = new Thread( new MissionControl() );
+    javaControl.start();
   }
   
   public boolean detectOs()
