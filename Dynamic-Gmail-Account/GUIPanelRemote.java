@@ -392,8 +392,22 @@ public class GUIPanelRemote extends JPanel
     {
       //Check input for list of predetermined commands
       String [] commands = { "" };
+      int numberOfCommands = 0;
       String [] parsedInput = outputString.parse( " " );
       
+      for ( int inputCheck = 0; inputCheck < numberOfCommands; inputCheck++ )
+      {
+        if ( parsedInput[ 0 ].equals( commands[ inputCheck ] )
+        {
+          if ( commands[ inputCheck ] = "" )
+          {
+            //Add what should happen here
+          } else if ( commands[ inputCheck ] = "" )
+          {
+            //Add what should happen here
+          }
+        }
+      }
       //for testing and debugging, always return true
       //return true;
     }
