@@ -399,7 +399,8 @@ public class GUIPanelRemote extends JPanel
       {
         if ( parsedInput[ 0 ].equals( commands[ inputCheck ] )
         {
-          if ( commands[ inputCheck ] = "" )
+          //If set default Gmail account is the sent command
+          if ( commands[ inputCheck ] = "newGmail" )
           {
             //Add what should happen here
           } else if ( commands[ inputCheck ] = "" )
