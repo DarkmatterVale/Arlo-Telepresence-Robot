@@ -381,34 +381,27 @@ public class GUIPanelRemote extends JPanel
           } catch (SerialPortException e) {
             e.printStackTrace();
           }
-        } else
-        {
-          //data incoming is not relevant to robot movement, exit if statement
         }
       }
     }
     
     public boolean checkInput()
     {
-      //Check input for list of predetermined commands
-      String [] commands = { "" };
-      int numberOfCommands = 0;
+      //Check input against list of predetermined commands
       String [] parsedInput = outputString.parse( " " );
       
-      for ( int inputCheck = 0; inputCheck < numberOfCommands; inputCheck++ )
+      if ( parsedInput[0].equals( "defaultaccount" ) )
       {
-        if ( parsedInput[ 0 ].equals( commands[ inputCheck ] )
-        {
-          //If set default Gmail account is the sent command
-          if ( commands[ inputCheck ] = "newGmail" )
-          {
-            //Add what should happen here
-          } else if ( commands[ inputCheck ] = "" )
-          {
-            //Add what should happen here
-          }
-        }
-      }
+        //Add code for switching default Gmail accounts
+        defaultUserName = parsedInput[1];
+        defaultPassword = parsedInput[2];
+        
+        return false;
+      } /*else if ( parsedInput[0].equals( "" ) )
+      {
+        //Add code for this command
+      } */
+      
       //for testing and debugging, always return true
       //return true;
     }
